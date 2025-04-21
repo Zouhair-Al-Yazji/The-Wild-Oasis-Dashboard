@@ -120,20 +120,23 @@ export const columns: ColumnDef<Cabin>[] = [
         <>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button
+                variant="ghost"
+                className="group-hover:text-primary h-8 w-8 p-0"
+              >
                 <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="group-hover:text-primary h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <HiSquare2Stack />
+              <DropdownMenuItem className="group">
+                <HiSquare2Stack className="group-hover:text-primary" />
                 <span>Duplicate cabin</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <HiPencil />
+              <DropdownMenuItem className="group">
+                <HiPencil className="group-hover:text-primary" />
                 <span>Update cabin</span>
               </DropdownMenuItem>
               <DropdownMenuItem

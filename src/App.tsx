@@ -55,8 +55,8 @@ export default function App() {
           style: {
             fontSize: "16px",
             maxWidth: "500px",
-            backgroundColor: "var(--text-white)",
-            color: "var(--text-gray-700)",
+            backgroundColor: "var(--background)",
+            color: "var(--foreground)",
           },
         }}
         containerStyle={{ margin: "8px" }}

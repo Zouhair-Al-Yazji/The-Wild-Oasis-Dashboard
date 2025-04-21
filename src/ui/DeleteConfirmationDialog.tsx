@@ -8,17 +8,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
+export type PropsDialogType = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onConfirm?: () => void;
+  isLoading?: boolean;
+};
+
 export function DeleteConfirmationDialog({
   open,
   onOpenChange,
   onConfirm,
   isLoading,
-}: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onConfirm: () => void;
-  isLoading: boolean;
-}) {
+}: PropsDialogType) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>

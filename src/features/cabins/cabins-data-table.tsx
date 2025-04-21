@@ -159,7 +159,7 @@ export function DataTable<TData extends Cabin, TValue>({
     <div className="space-y-4">
       {renderFilterInput()}
       {renderTable()}
-      {/* <DataTablePagination table={table} /> */}
+      <DataTablePagination table={table} />
     </div>
   );
 }
