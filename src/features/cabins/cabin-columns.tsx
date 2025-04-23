@@ -13,9 +13,10 @@ import type { Cabin } from "./useCabins";
 import { Badge } from "@/components/ui/badge";
 import { HiPencil, HiTrash, HiSquare2Stack } from "react-icons/hi2";
 import { formatCurrency } from "@/utils/helpers";
-import { useDeleteCabin } from "./useCabinMutations";
+import { useCreateCabin, useDeleteCabin } from "./useCabinMutations";
 import { useState } from "react";
 import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
+import CabinFormDialog from "./CabinFormDialog";
 
 export const columns: ColumnDef<Cabin>[] = [
   {
@@ -23,12 +24,14 @@ export const columns: ColumnDef<Cabin>[] = [
     cell: ({ row }) => {
       const imageUrl = row.original.image;
 
-      return imageUrl ? (
-        <img
-          src={imageUrl}
-          alt={`Cabin ${row.original.name || "Unnamed Cabin"}`}
-          className="w-20 object-cover"
-        />
+      return typeof imageUrl === "string" ? (
+        <div className="w-[84px]">
+          <img
+            src={imageUrl}
+            alt={`Cabin ${row.original.name || "Unnamed Cabin"}`}
+            className="w-20 object-cover"
+          />
+        </div>
       ) : (
         <div className="flex h-12 w-20 items-center justify-center bg-gray-100">
           <span className="text-xs text-gray-500">No image</span>
@@ -107,12 +110,40 @@ export const columns: ColumnDef<Cabin>[] = [
     id: "actions",
     cell: ({ row }) => {
       const cabin = row.original;
+
+      const {
+        id: cabinId,
+        name,
+        image,
+        maxCapacity,
+        regularPrice,
+        discount,
+        description,
+      }: Cabin = cabin;
+
       const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+      const [isUpdateFormDialogOpen, setIsUpdateFormDialogOpen] =
+        useState(false);
       const { mutate: deleteCabin, isPending: isDeleting } = useDeleteCabin();
+      const { mutate: duplicateCabin } = useCreateCabin();
 
       function handleDelete() {
-        deleteCabin(cabin.id, {
-          onSettled: () => setIsDeleteDialogOpen(false),
+        if (cabinId) {
+          deleteCabin(cabinId, {
+            onSettled: () => setIsDeleteDialogOpen(false),
+          });
+        }
+      }
+
+      function handleDuplicate() {
+        duplicateCabin({
+          name: `Copy of ${name}`,
+          image,
+          maxCapacity,
+          regularPrice,
+          discount,
+          description,
+          created_at: new Date().toISOString(),
         });
       }
 
@@ -131,11 +162,14 @@ export const columns: ColumnDef<Cabin>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="group">
+              <DropdownMenuItem className="group" onClick={handleDuplicate}>
                 <HiSquare2Stack className="group-hover:text-primary" />
                 <span>Duplicate cabin</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="group">
+              <DropdownMenuItem
+                className="group"
+                onClick={() => setIsUpdateFormDialogOpen(true)}
+              >
                 <HiPencil className="group-hover:text-primary" />
                 <span>Update cabin</span>
               </DropdownMenuItem>
@@ -154,6 +188,12 @@ export const columns: ColumnDef<Cabin>[] = [
             onOpenChange={setIsDeleteDialogOpen}
             onConfirm={handleDelete}
             isLoading={isDeleting}
+          />
+
+          <CabinFormDialog
+            open={isUpdateFormDialogOpen}
+            onOpenChange={setIsUpdateFormDialogOpen}
+            cabinToUpdate={cabin}
           />
         </>
       );

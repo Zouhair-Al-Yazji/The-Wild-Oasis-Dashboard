@@ -7,12 +7,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import SpinnerMini from "./SpinnerMini";
 
 export type PropsDialogType = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onConfirm?: () => void;
-  isLoading?: boolean;
+  onConfirm: () => void;
+  isLoading: boolean;
 };
 
 export function DeleteConfirmationDialog({
@@ -44,7 +45,7 @@ export function DeleteConfirmationDialog({
             onClick={onConfirm}
             disabled={isLoading}
           >
-            {isLoading ? "Deleting..." : "Delete"}
+            {isLoading ? <SpinnerMini label="deleting..." /> : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>

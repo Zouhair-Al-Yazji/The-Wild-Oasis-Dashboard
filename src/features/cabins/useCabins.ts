@@ -2,14 +2,14 @@ import { getCabins } from "@/services/apiCabins";
 import { useQuery } from "@tanstack/react-query";
 
 export type Cabin = {
-  id: number;
+  id?: number;
   created_at: string;
-  name: string | null;
-  maxCapacity: number | null;
-  regularPrice: number | null;
-  discount: number | null;
-  description: string | null;
-  image: string | null;
+  name: string;
+  maxCapacity: number;
+  regularPrice: number;
+  discount: number;
+  description: string;
+  image: FileList | string;
 };
 
 export function useCabins() {

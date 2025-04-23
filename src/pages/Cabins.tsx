@@ -2,7 +2,7 @@ import { DataTable } from "@/features/cabins/cabins-data-table";
 import { columns } from "@/features/cabins/cabin-columns";
 import { useCabins } from "@/features/cabins/useCabins";
 import { Button } from "@/components/ui/button";
-import CreateCabinFormDialog from "@/features/cabins/CabinFormDialog";
+import CabinFormDialog from "@/features/cabins/CabinFormDialog";
 import { useState } from "react";
 
 export default function CabinsPage() {
@@ -22,7 +22,7 @@ export default function CabinsPage() {
         Add new Cabin
       </Button>
 
-      <CreateCabinFormDialog
+      <CabinFormDialog
         open={isCreateCabinDialogOpen}
         onOpenChange={setIsCreateCabinDialogOpen}
       />
