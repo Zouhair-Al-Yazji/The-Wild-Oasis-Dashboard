@@ -88,9 +88,9 @@ export default function CreateCabinForm({
     >
       <div className="space-y-6 py-4">
         {/* Cabin Name */}
-        <div className="grid grid-cols-[13rem_1fr_1fr] items-center gap-6">
+        <div className="grid grid-cols-[13rem_1fr_1fr_1fr] items-center gap-6">
           <Label htmlFor="name">Cabin name</Label>
-          <div className="space-y-2">
+          <div className="col-span-2 space-y-2">
             <Input
               type="text"
               id="name"
@@ -108,9 +108,9 @@ export default function CreateCabinForm({
         </div>
 
         {/* Max Capacity */}
-        <div className="grid grid-cols-[13rem_1fr_1fr] items-center gap-6">
+        <div className="grid grid-cols-[13rem_1fr_1fr_1fr] items-center gap-6">
           <Label htmlFor="maxCapacity">Maximum capacity</Label>
-          <div className="space-y-2">
+          <div className="col-span-2 space-y-2">
             <Input
               type="number"
               id="maxCapacity"
@@ -132,9 +132,9 @@ export default function CreateCabinForm({
         </div>
 
         {/* Regular Price */}
-        <div className="grid grid-cols-[13rem_1fr_1fr] items-center gap-6">
+        <div className="grid grid-cols-[13rem_1fr_1fr_1fr] items-center gap-6">
           <Label htmlFor="regularPrice">Regular price</Label>
-          <div className="space-y-2">
+          <div className="col-span-2 space-y-2">
             <Input
               type="number"
               id="regularPrice"
@@ -156,9 +156,9 @@ export default function CreateCabinForm({
         </div>
 
         {/* Discount */}
-        <div className="grid grid-cols-[13rem_1fr_1fr] items-center gap-6">
+        <div className="grid grid-cols-[13rem_1fr_1fr_1fr] items-center gap-6">
           <Label htmlFor="discount">Discount</Label>
-          <div className="space-y-2">
+          <div className="col-span-2 space-y-2">
             <Input
               type="number"
               id="discount"
@@ -179,25 +179,26 @@ export default function CreateCabinForm({
         </div>
 
         {/* Description */}
-        <div className="grid grid-cols-[13rem_1fr_1fr] items-center gap-6">
+        <div className="grid grid-cols-[13rem_1fr_1fr_1fr] items-center gap-6">
           <Label htmlFor="description">Description</Label>
-
-          <Textarea
-            id="description"
-            {...register("description", {
-              required: "This field is required",
-            })}
-          />
-          {errors?.description && (
-            <p className="mt-2 text-sm text-red-600">
-              {typeof errors?.description?.message === "string" &&
-                errors.description.message}
-            </p>
-          )}
+          <div className="col-span-2 grid items-center space-y-2">
+            <Textarea
+              id="description"
+              {...register("description", {
+                required: "This field is required",
+              })}
+            />
+            {errors?.description && (
+              <p className="mt-2 text-sm text-red-600">
+                {typeof errors?.description?.message === "string" &&
+                  errors.description.message}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Image Upload */}
-        <div className="grid grid-cols-[13rem_1fr_1fr] items-center gap-6">
+        <div className="grid grid-cols-[13rem_1fr_1fr_1fr] items-center gap-6">
           <Label htmlFor="image">
             Cabin photo {isUpdateSession && "(optional)"}
           </Label>

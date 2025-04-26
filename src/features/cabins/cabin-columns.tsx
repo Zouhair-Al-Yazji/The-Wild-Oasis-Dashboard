@@ -25,7 +25,7 @@ export const columns: ColumnDef<Cabin>[] = [
       const imageUrl = row.original.image;
 
       return typeof imageUrl === "string" ? (
-        <div className="w-[84px]">
+        <div className="w-20">
           <img
             src={imageUrl}
             alt={`Cabin ${row.original.name || "Unnamed Cabin"}`}
@@ -53,11 +53,13 @@ export const columns: ColumnDef<Cabin>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="px-2 font-medium">
-        {row.getValue("name") || "Unnamed Cabin"}
-      </div>
-    ),
+    cell: ({ row }) => {
+      return (
+        <div className="px-2 font-medium">
+          {row.getValue("name") || "Unnamed Cabin"}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "maxCapacity",
@@ -159,7 +161,10 @@ export const columns: ColumnDef<Cabin>[] = [
                 <MoreHorizontal className="group-hover:text-primary h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent
+              align="end"
+              onCloseAutoFocus={(e) => e.preventDefault()}
+            >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="group" onClick={handleDuplicate}>

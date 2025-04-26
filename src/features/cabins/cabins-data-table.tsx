@@ -108,14 +108,14 @@ export function DataTable<TData extends Cabin, TValue>({
         onChange={(event) =>
           table.getColumn("name")?.setFilterValue(event.target.value)
         }
-        className="max-w-sm"
+        className="max-w-sm bg-white"
       />
     </div>
   );
 
   const renderTable = () => (
-    <div className="rounded-md border">
-      <Table>
+    <div className="rounded-md border bg-white">
+      <Table className="">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
