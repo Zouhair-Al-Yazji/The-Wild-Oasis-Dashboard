@@ -1,7 +1,7 @@
 import supabase, { supabaseUrl } from "./supabase";
 import type { Cabin } from "@/features/cabins/useCabins";
 
-export async function getCabins() {
+export async function getCabins(): Promise<Cabin[]> {
   const { data: cabins, error } = await supabase.from("cabins").select("*");
 
   if (error) {
@@ -93,7 +93,7 @@ export async function createUpdateCabin(
   return data;
 }
 
-export async function deleteCabin(id: number) {
+export async function deleteCabin(id: number): Promise<Cabin | null> {
   const { data, error } = await supabase.from("cabins").delete().eq("id", id);
 
   if (error) {
