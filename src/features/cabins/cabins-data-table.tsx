@@ -8,11 +8,9 @@ import {
   getFilteredRowModel,
   SortingState,
   ColumnFiltersState,
-  ColumnOrderState,
-  VisibilityState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { Cabin } from "@/features/cabins/useCabins";
+import type { Cabin } from "@/features/cabins/useCabins";
 import {
   Table,
   TableBody,
@@ -21,106 +19,63 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
-import { DataTablePagination } from "./data-table-pagination";
 
-interface DataTableProps<TData extends Cabin, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data?: TData[];
+import { DataTablePagination } from "./data-table-pagination";
+import CabinsTableOperations from "./CabinsTableOperations";
+import TableSkeleton from "@/ui/TableSkeleton";
+import Error from "@/ui/Error";
+
+type DataTableProps = {
+  columns: ColumnDef<Cabin, unknown>[];
+  data?: Cabin[];
   isLoading?: boolean;
   isError?: boolean;
-  filterPlaceholder?: string;
-  enableRowSelection?: boolean;
-}
+};
 
-export function DataTable<TData extends Cabin, TValue>({
+export function CabinsDataTable({
   columns,
   data = [],
   isLoading = false,
   isError = false,
-  filterPlaceholder = "Filter cabins by name...",
-  enableRowSelection = false,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>([]);
-  const [rowSelection, setRowSelection] = useState({});
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([
+    {
+      id: "discount",
+      value: "all",
+    },
+  ]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,
   });
 
-  const table = useReactTable({
+  const table = useReactTable<Cabin>({
     data,
     columns,
     state: {
       sorting,
       columnFilters,
-      columnVisibility,
-      columnOrder,
-      rowSelection,
       pagination,
     },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    onColumnOrderChange: setColumnOrder,
-    onRowSelectionChange: setRowSelection,
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    enableRowSelection,
     getRowId: (row) => (typeof row.id !== "undefined" ? row.id.toString() : ""),
   });
 
-  const renderLoadingState = () => (
-    <div className="space-y-4">
-      <div className="flex items-center gap-4">
-        <Skeleton className="h-10 w-[300px]" />
-        <Skeleton className="h-10 w-[150px]" />
-      </div>
-      <Skeleton className="h-[400px] w-full" />
-      <div className="flex items-center justify-between">
-        <Skeleton className="h-8 w-[200px]" />
-        <div className="flex items-center gap-2">
-          <Skeleton className="h-8 w-24" />
-          <Skeleton className="h-8 w-24" />
-          <Skeleton className="h-8 w-8" />
-          <Skeleton className="h-8 w-8" />
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderErrorState = () => (
-    <div className="text-red-500">Error loading cabin data</div>
-  );
-
-  const renderFilterInput = () => (
-    <div className="flex items-center gap-4">
-      <Input
-        placeholder={filterPlaceholder}
-        value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-        onChange={(event) =>
-          table.getColumn("name")?.setFilterValue(event.target.value)
-        }
-        className="max-w-sm bg-white"
-      />
-    </div>
-  );
-
-  const renderTable = () => (
-    <div className="rounded-md border bg-white">
-      <Table className="">
+  const RenderTable = () => (
+    <div className="bg-background rounded-md border">
+      <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead key={header.id} className="group relative">
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -132,13 +87,11 @@ export function DataTable<TData extends Cabin, TValue>({
             </TableRow>
           ))}
         </TableHeader>
+
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
+              <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -158,13 +111,13 @@ export function DataTable<TData extends Cabin, TValue>({
     </div>
   );
 
-  if (isLoading) return renderLoadingState();
-  if (isError) return renderErrorState();
+  if (isLoading) return <TableSkeleton />;
+  if (isError) return <Error message="Error loading cabins data" />;
 
   return (
     <div className="space-y-4">
-      {renderFilterInput()}
-      {renderTable()}
+      <CabinsTableOperations table={table} />
+      <RenderTable />
       <DataTablePagination table={table} />
     </div>
   );

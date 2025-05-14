@@ -1,8 +1,8 @@
+import { UseFormRegister, UseFormWatch } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CloudUpload } from "lucide-react";
-import { UseFormRegister, UseFormWatch } from "react-hook-form";
-import { Cabin } from "./useCabins";
+import type { Cabin } from "./useCabins";
 
 type ImageUploadProps = {
   register: UseFormRegister<Cabin>;

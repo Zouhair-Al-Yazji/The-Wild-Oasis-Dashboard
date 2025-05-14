@@ -10,20 +10,20 @@ import FormRow from "@/ui/FormRow";
 import ImageUpload from "./ImageUpload";
 
 type CreateCabinFormProps = {
-  onSuccess: () => void;
+  onConfirm: () => void;
   cabinToUpdate?: Cabin;
-  onCancel: () => void;
 };
 
 export default function CreateCabinForm({
-  onSuccess,
+  onConfirm,
   cabinToUpdate,
-  onCancel,
 }: CreateCabinFormProps) {
   const { mutate: createCabin, isPending: isCreating } = useCreateCabin();
   const { mutate: updateCabin, isPending: isUpdating } = useUpdateCabin();
 
   const { id: updateId, ...updateValues } = cabinToUpdate || {};
+
+  const isWorking = isCreating || isUpdating;
 
   const isUpdateSession = Boolean(updateId);
 
@@ -64,7 +64,7 @@ export default function CreateCabinForm({
         {
           onSuccess: () => {
             reset();
-            onSuccess();
+            onConfirm();
           },
         },
       );
@@ -74,7 +74,7 @@ export default function CreateCabinForm({
         {
           onSuccess: () => {
             reset();
-            onSuccess();
+            onConfirm();
           },
         },
       );
@@ -217,20 +217,20 @@ export default function CreateCabinForm({
         </FormRow>
       </div>
 
-      <DialogFooter className="bg-background sticky bottom-0 pt-6">
+      <DialogFooter className="bg-background sticky bottom-0 border-t pt-6">
         <Button
           variant="outline"
           type="button"
-          disabled={isCreating || isUpdating}
+          disabled={isWorking}
           onClick={(e) => {
             e.preventDefault();
-            onCancel();
+            onConfirm();
           }}
         >
           Cancel
         </Button>
-        <Button type="submit" disabled={isCreating || isUpdating}>
-          {isCreating || isUpdating ? (
+        <Button type="submit" disabled={isWorking}>
+          {isWorking ? (
             <SpinnerMini label="saving..." />
           ) : isUpdateSession ? (
             "Update Cabin"

@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { Cabin } from "./useCabins";
 import { Badge } from "@/components/ui/badge";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { HiPencil, HiTrash, HiSquare2Stack } from "react-icons/hi2";
 import { formatCurrency } from "@/utils/helpers";
 import { useCreateCabin, useDeleteCabin } from "./useCabinMutations";
-import { useState } from "react";
 import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
 import CabinFormDialog from "./CabinFormDialog";
 
@@ -29,7 +29,7 @@ export const columns: ColumnDef<Cabin>[] = [
           <img
             src={imageUrl}
             alt={`Cabin ${row.original.name || "Unnamed Cabin"}`}
-            className="w-20 object-cover"
+            className="h-14 w-20 object-cover"
           />
         </div>
       ) : (
@@ -53,6 +53,7 @@ export const columns: ColumnDef<Cabin>[] = [
         </Button>
       );
     },
+
     cell: ({ row }) => {
       return (
         <div className="px-2 font-medium">
@@ -63,7 +64,18 @@ export const columns: ColumnDef<Cabin>[] = [
   },
   {
     accessorKey: "maxCapacity",
-    header: () => <div className="text-left uppercase">Capacity</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="uppercase"
+        >
+          Capacity
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const capacity = row.getValue("maxCapacity") as number;
       return (
@@ -75,7 +87,18 @@ export const columns: ColumnDef<Cabin>[] = [
   },
   {
     accessorKey: "regularPrice",
-    header: () => <div className="text-left uppercase">Regular Price</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="uppercase"
+        >
+          Price
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("regularPrice"));
       return (
@@ -99,10 +122,27 @@ export const columns: ColumnDef<Cabin>[] = [
         </Badge>
       );
     },
+    filterFn: (row, columnId, filterValue) => {
+      if (filterValue === "all") return true;
+      if (filterValue === "with") return !!row.getValue(columnId);
+      if (filterValue === "without") return !row.getValue(columnId);
+      return true;
+    },
   },
   {
     accessorKey: "created_at",
-    header: "CREATED AT",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="uppercase"
+        >
+          created at
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const date = new Date(row.getValue("created_at"));
       return date.toLocaleDateString();

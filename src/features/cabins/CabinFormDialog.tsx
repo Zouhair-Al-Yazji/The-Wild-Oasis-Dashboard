@@ -14,14 +14,14 @@ export default function CabinFormDialog({
   cabinToUpdate,
 }: {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
   cabinToUpdate?: Cabin;
+  onOpenChange: (open: boolean) => void;
 }) {
   const isUpdateSession = Boolean(cabinToUpdate?.id);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] !max-w-3xl overflow-hidden">
+      <DialogContent className="max-h-[90vh] !max-w-4xl overflow-hidden">
         <DialogHeader className="px-1">
           <DialogTitle>
             {isUpdateSession ? "Update Cabin" : "Add Cabin"}
@@ -38,8 +38,7 @@ export default function CabinFormDialog({
         </DialogHeader>
 
         <CreateCabinForm
-          onSuccess={() => onOpenChange(false)}
-          onCancel={() => onOpenChange(false)}
+          onConfirm={() => onOpenChange(false)}
           cabinToUpdate={cabinToUpdate}
         />
       </DialogContent>
