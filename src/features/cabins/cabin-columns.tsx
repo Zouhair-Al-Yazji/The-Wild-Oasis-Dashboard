@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { Cabin } from "./useCabins";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { HiPencil, HiTrash, HiSquare2Stack } from "react-icons/hi2";
 import { formatCurrency } from "@/utils/helpers";
 import { useCreateCabin, useDeleteCabin } from "./useCabinMutations";
 import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
 import CabinFormDialog from "./CabinFormDialog";
+import SortableHeader from "@/ui/SortableHeader";
 
 export const columns: ColumnDef<Cabin>[] = [
   {
@@ -43,14 +44,7 @@ export const columns: ColumnDef<Cabin>[] = [
     accessorKey: "name",
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="uppercase"
-        >
-          Cabin Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <SortableHeader column={column} title="Cabin Name" sortKey="name" />
       );
     },
 
@@ -66,14 +60,11 @@ export const columns: ColumnDef<Cabin>[] = [
     accessorKey: "maxCapacity",
     header: ({ column }) => {
       return (
-        <Button
-          variant={"ghost"}
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="uppercase"
-        >
-          Capacity
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <SortableHeader
+          column={column}
+          title="Capacity"
+          sortKey="maxCapacity"
+        />
       );
     },
     cell: ({ row }) => {
@@ -89,14 +80,7 @@ export const columns: ColumnDef<Cabin>[] = [
     accessorKey: "regularPrice",
     header: ({ column }) => {
       return (
-        <Button
-          variant={"ghost"}
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="uppercase"
-        >
-          Price
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <SortableHeader column={column} title="Price" sortKey="regularPrice" />
       );
     },
     cell: ({ row }) => {
@@ -133,14 +117,11 @@ export const columns: ColumnDef<Cabin>[] = [
     accessorKey: "created_at",
     header: ({ column }) => {
       return (
-        <Button
-          variant={"ghost"}
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="uppercase"
-        >
-          created at
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <SortableHeader
+          column={column}
+          title="created at"
+          sortKey="created_at"
+        />
       );
     },
     cell: ({ row }) => {

@@ -24,6 +24,7 @@ import { DataTablePagination } from "./data-table-pagination";
 import CabinsTableOperations from "./CabinsTableOperations";
 import TableSkeleton from "@/ui/TableSkeleton";
 import Error from "@/ui/Error";
+import { useSearchParams } from "react-router-dom";
 
 type DataTableProps = {
   columns: ColumnDef<Cabin, unknown>[];
@@ -38,13 +39,21 @@ export function CabinsDataTable({
   isLoading = false,
   isError = false,
 }: DataTableProps) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([
-    {
-      id: "discount",
-      value: "all",
-    },
-  ]);
+  const [searchParams] = useSearchParams();
+  // Initialize sorting from URL if valid params exist
+  const initialSorting: SortingState = [];
+  const urlSort = searchParams.get("sortBy");
+  const urlSortDirection = searchParams.get("Direction");
+
+  if (urlSort && ["asc", "desc"].includes(urlSortDirection || "")) {
+    initialSorting.push({
+      id: urlSort,
+      desc: urlSortDirection === "desc",
+    });
+  }
+
+  const [sorting, setSorting] = useState<SortingState>(initialSorting);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,
