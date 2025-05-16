@@ -43,7 +43,7 @@ export function CabinsDataTable({
   // Initialize sorting from URL if valid params exist
   const initialSorting: SortingState = [];
   const urlSort = searchParams.get("sortBy");
-  const urlSortDirection = searchParams.get("Direction");
+  const urlSortDirection = searchParams.get("direction");
 
   if (urlSort && ["asc", "desc"].includes(urlSortDirection || "")) {
     initialSorting.push({

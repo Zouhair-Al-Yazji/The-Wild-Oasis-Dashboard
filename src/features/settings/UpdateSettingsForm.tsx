@@ -5,6 +5,7 @@ import FormRow from "@/ui/FormRow";
 import Spinner from "@/ui/Spinner";
 import { FocusEvent } from "react";
 import toast from "react-hot-toast";
+import Error from "@/ui/Error";
 
 export default function UpdateSettingsForm() {
   const { mutate: updateSetting, isPending: isUpdating } = useUpdateSetting();
@@ -45,7 +46,8 @@ export default function UpdateSettingsForm() {
     });
   }
 
-  if (isError) return <div>{error.message}</div>;
+  if (isError) return <Error message={error.message} />;
+
   if (isPending) return <Spinner />;
 
   return (
@@ -59,6 +61,7 @@ export default function UpdateSettingsForm() {
             min={1}
             disabled={isUpdating}
             onBlur={(e) => handleUpdate(e, "minBookingLength")}
+            className="bg-gray-50"
           />
         </FormRow>
       </div>
@@ -69,6 +72,7 @@ export default function UpdateSettingsForm() {
             type="number"
             id="max-nights"
             defaultValue={maxBookingLength}
+            className="bg-gray-50"
             disabled={isUpdating}
             onBlur={(e) => handleUpdate(e, "maxBookingLength")}
           />
@@ -80,6 +84,7 @@ export default function UpdateSettingsForm() {
           <Input
             type="number"
             id="max-guests"
+            className="bg-gray-50"
             defaultValue={maxGuestsPerBooking}
             disabled={isUpdating}
             onBlur={(e) => handleUpdate(e, "maxGuestsPerBooking")}
@@ -91,6 +96,7 @@ export default function UpdateSettingsForm() {
         <FormRow label="Breakfast price" htmlFor="breakfast-price">
           <Input
             type="number"
+            className="bg-gray-50"
             id="breakfast-price"
             min={1}
             defaultValue={breakfastPrice}

@@ -1,51 +1,36 @@
 import { Button } from "@/components/ui/button";
-import type { Cabin } from "@/features/cabins/useCabins";
+import { useSortableColumn } from "@/hooks/useSortableColumn";
 import type { Column } from "@tanstack/react-table";
-import { ArrowUpDown } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
 
-type SortableHeaderProps = {
-  column: Column<Cabin>;
+type SortableHeaderProps<TData> = {
+  column: Column<TData>;
   title: string;
   sortKey: string;
 };
 
-export default function SortableHeader({
+export default function SortableHeader<TData>({
   column,
   title,
   sortKey,
-}: SortableHeaderProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const currentSort = searchParams.get("sortBy");
-  const currentSortDirection = searchParams.get("direction");
-
-  function handleSort() {
-    // Clicking same column - toggle direction
-    // Create a copy of existing searchParams to modify
-    const newParams = new URLSearchParams(searchParams);
-
-    // Determine the new direction
-    const isSameColumn = currentSort === sortKey;
-    const newDirection = isSameColumn
-      ? currentSortDirection === "asc"
-        ? "desc"
-        : "asc"
-      : "asc";
-
-    // Update the URL parameters
-    newParams.set("sortBy", sortKey);
-    newParams.set("direction", newDirection);
-    setSearchParams(newParams);
-
-    // Update table sorting
-    column.toggleSorting(newDirection === "desc");
-  }
+}: SortableHeaderProps<TData>) {
+  const { toggleSort, isCurrent, isAsc, isDesc, currentSortDirection } =
+    useSortableColumn(column, sortKey);
 
   return (
-    <Button variant="ghost" onClick={handleSort} className="uppercase">
+    <Button
+      title={isCurrent ? `sorted ${currentSortDirection}` : `sort by ${title}`}
+      variant="ghost"
+      onClick={toggleSort}
+      className="uppercase"
+    >
       {title}
-      <ArrowUpDown className="ml-2 h-4 w-4" />
+
+      {!isCurrent && <ArrowUpDown className="ml-2 h-4 w-4" />}
+
+      {isCurrent && isAsc && <ArrowDown className="text-primary h-4 w-4" />}
+
+      {isCurrent && isDesc && <ArrowUp className="text-primary h-4 w-4" />}
     </Button>
   );
 }
