@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CabinsDataTable } from "@/features/cabins/cabins-data-table";
-import { columns } from "@/features/cabins/cabin-columns";
+import { CabinsDataTable } from "@/features/cabins/CabinsDataTable";
+import { columns } from "@/features/cabins/CabinColumns";
 import { useCabins } from "@/features/cabins/useCabins";
 import { Button } from "@/components/ui/button";
 import CabinFormDialog from "@/features/cabins/CabinFormDialog";

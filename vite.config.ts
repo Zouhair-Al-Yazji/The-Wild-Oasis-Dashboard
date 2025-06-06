@@ -4,6 +4,10 @@ import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  server: {
+    open: "/",
+    host: true,
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

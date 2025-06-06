@@ -4,7 +4,7 @@ import type { Column } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
 
 type SortableHeaderProps<TData> = {
-  column: Column<TData>;
+  column?: Column<TData>;
   title: string;
   sortKey: string;
 };
@@ -15,7 +15,7 @@ export default function SortableHeader<TData>({
   sortKey,
 }: SortableHeaderProps<TData>) {
   const { toggleSort, isCurrent, isAsc, isDesc, currentSortDirection } =
-    useSortableColumn(column, sortKey);
+    useSortableColumn(sortKey, column);
 
   return (
     <Button

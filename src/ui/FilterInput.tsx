@@ -1,49 +1,46 @@
 import { Input } from "@/components/ui/input";
-import type { Cabin } from "@/features/cabins/useCabins";
 import { Table } from "@tanstack/react-table";
 import { ChangeEvent, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function FilterInput({
+export default function FilterInput<TData>({
   filterField,
   filterPlaceholder,
   table,
 }: {
   filterField: string;
   filterPlaceholder: string;
-  table: Table<Cabin>;
+  table?: Table<TData>;
 }) {
-  const column = table.getColumn(filterField);
-
+  const column = table?.getColumn(filterField);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const currentSearchValue = searchParams.get(filterField) || "";
 
-  useEffect(
-    function () {
+  useEffect(function () {
+    if (currentSearchValue) {
       column?.setFilterValue(currentSearchValue);
-    },
-    [currentSearchValue, column, filterField],
-  );
+    }
+  }, []);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
 
+    // Update the table filter
+    column?.setFilterValue(value);
+
+    // Update URL params
     if (value) {
       searchParams.set(filterField, value);
-      setSearchParams(searchParams);
     } else {
       searchParams.delete(filterField);
-      setSearchParams(searchParams);
     }
-
-    column?.setFilterValue(e.target.value);
+    setSearchParams(searchParams);
   }
 
   return (
     <Input
       placeholder={filterPlaceholder}
-      value={(table.getColumn(filterField)?.getFilterValue() as string) ?? ""}
+      value={(column?.getFilterValue() as string) ?? ""}
       onChange={handleChange}
       className="max-w-sm bg-white"
     />

@@ -1,12 +1,19 @@
-import Error from "@/ui/Error";
-import Spinner from "@/ui/Spinner";
+import BookingsDataTable from "@/features/bookings/BookingsDataTable";
+import { useBookings } from "@/features/bookings/useBookings";
+import { columns } from "../features/bookings/BookingColumns";
 
 export default function Bookings() {
+  const { data, isPending, isError } = useBookings();
+
   return (
-    <div>
-      Bookings
-      <Spinner />
-      <Error message="ss" />
-    </div>
+    <>
+      <h2 className="text-2xl font-semibold text-gray-700">All Bookings</h2>
+      <BookingsDataTable
+        columns={columns}
+        data={data}
+        isLoading={isPending}
+        isError={isError}
+      />
+    </>
   );
 }

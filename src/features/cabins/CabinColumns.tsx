@@ -189,21 +189,21 @@ export const columns: ColumnDef<Cabin>[] = [
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="group" onClick={handleDuplicate}>
-                <HiSquare2Stack className="group-hover:text-primary" />
+                <HiSquare2Stack className="group-hover:text-primary text-gray-600" />
                 <span>Duplicate cabin</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="group"
                 onClick={() => setIsUpdateFormDialogOpen(true)}
               >
-                <HiPencil className="group-hover:text-primary" />
+                <HiPencil className="group-hover:text-primary text-gray-600" />
                 <span>Update cabin</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="group"
                 onClick={() => setIsDeleteDialogOpen(true)}
               >
-                <HiTrash className="group-hover:text-red-600" />
+                <HiTrash className="text-gray-600 group-hover:text-red-600" />
                 <span className="group-hover:text-red-600">Delete cabin</span>
               </DropdownMenuItem>
             </DropdownMenuContent>

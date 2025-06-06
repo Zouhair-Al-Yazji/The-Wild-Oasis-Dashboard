@@ -2,15 +2,15 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  getFilteredRowModel,
   SortingState,
-  ColumnFiltersState,
+  useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
-import type { Cabin } from "@/features/cabins/useCabins";
+import type { Booking } from "./useBooking";
+import TableSkeleton from "@/ui/TableSkeleton";
+import Error from "@/ui/Error";
 import {
   Table,
   TableBody,
@@ -19,31 +19,33 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import { DataTablePagination } from "./data-table-pagination";
-import CabinsTableOperations from "./CabinsTableOperations";
-import TableSkeleton from "@/ui/TableSkeleton";
-import Error from "@/ui/Error";
+import BookingsTableOperations from "./BookingsTableOperations";
+import { DataTablePagination } from "@/ui/DataTablePagination";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-type DataTableProps = {
-  columns: ColumnDef<Cabin, unknown>[];
-  data?: Cabin[];
-  isLoading?: boolean;
+type BookingDataTableProps = {
+  columns: ColumnDef<Booking, unknown>[];
+  data?: Booking[];
   isError?: boolean;
+  isLoading?: boolean;
 };
 
-export function CabinsDataTable({
-  columns,
+export default function BookingsDataTable({
   data = [],
+  columns,
   isLoading = false,
   isError = false,
-}: DataTableProps) {
+}: BookingDataTableProps) {
   const [searchParams] = useSearchParams();
+
   // Initialize sorting from URL if valid params exist
   const initialSorting: SortingState = [];
   const urlSort = searchParams.get("sortBy");
   const urlSortDirection = searchParams.get("direction");
+
+  const paramPage = Number(searchParams.get("page"));
+  const paramPageSize = Number(searchParams.get("pageSize"));
 
   if (urlSort && ["asc", "desc"].includes(urlSortDirection || "")) {
     initialSorting.push({
@@ -53,28 +55,24 @@ export function CabinsDataTable({
   }
 
   const [sorting, setSorting] = useState<SortingState>(initialSorting);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 5,
+    pageIndex: paramPage ? paramPage - 1 : 0,
+    pageSize: paramPageSize ? paramPageSize : 5,
   });
 
-  const table = useReactTable<Cabin>({
+  const table = useReactTable({
     data,
     columns,
     state: {
-      sorting,
-      columnFilters,
       pagination,
+      sorting,
     },
     onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
     onPaginationChange: setPagination,
-    getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    getRowId: (row) => (typeof row.id !== "undefined" ? row.id.toString() : ""),
+    getCoreRowModel: getCoreRowModel(),
   });
 
   const RenderTable = () => (
@@ -84,7 +82,7 @@ export function CabinsDataTable({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id} className="group relative">
+                <TableHead key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -111,7 +109,7 @@ export function CabinsDataTable({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No cabins found.
+                No bookings found
               </TableCell>
             </TableRow>
           )}
@@ -125,7 +123,7 @@ export function CabinsDataTable({
 
   return (
     <div className="space-y-4">
-      <CabinsTableOperations table={table} />
+      <BookingsTableOperations table={table} />
       <RenderTable />
       <DataTablePagination table={table} />
     </div>

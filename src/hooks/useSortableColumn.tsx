@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export function useSortableColumn<TData>(
-  column: Column<TData>,
   sortKey: string,
+  column?: Column<TData>,
 ) {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -28,7 +28,7 @@ export function useSortableColumn<TData>(
     setSearchParams(newParams);
 
     // Update table sorting
-    column.toggleSorting(newDirection === "desc");
+    column?.toggleSorting(newDirection === "desc");
   }
 
   return useMemo(
