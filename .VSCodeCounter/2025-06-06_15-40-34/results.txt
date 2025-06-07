@@ -1,0 +1,128 @@
+Date : 2025-06-06 15:40:34
+Directory : d:\react-projects\the-wild-oasis-ts
+Total : 77 files,  6256 codes, 43 comments, 1033 blanks, all 7332 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| TypeScript JSX     |         48 |      2,786 |         23 |        286 |      3,095 |
+| YAML               |          1 |      2,730 |          0 |        634 |      3,364 |
+| TypeScript         |         16 |        321 |         14 |         79 |        414 |
+| PostCSS            |          1 |        166 |          0 |          9 |        175 |
+| JSON               |          5 |        127 |          4 |          8 |        139 |
+| Markdown           |          1 |         45 |          0 |         10 |         55 |
+| JavaScript         |          1 |         45 |          0 |          4 |         49 |
+| HTML               |          1 |         20 |          2 |          1 |         23 |
+| JSON with Comments |          1 |         13 |          0 |          1 |         14 |
+| Properties         |          1 |          2 |          0 |          1 |          3 |
+| XML                |          1 |          1 |          0 |          0 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                  | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                     |         77 |      6,256 |         43 |      1,033 |      7,332 |
+| . (Files)                                                                             |         12 |      2,998 |          6 |        661 |      3,665 |
+| public                                                                                |          1 |          1 |          0 |          0 |          1 |
+| src                                                                                   |         64 |      3,257 |         37 |        372 |      3,666 |
+| src (Files)                                                                           |          3 |         71 |          1 |          7 |         79 |
+| src\components                                                                        |         12 |        961 |          0 |        110 |      1,071 |
+| src\components\ui                                                                     |         12 |        961 |          0 |        110 |      1,071 |
+| src\features                                                                          |         18 |      1,250 |         20 |        120 |      1,390 |
+| src\features\bookings                                                                 |          6 |        336 |          6 |         32 |        374 |
+| src\features\cabins                                                                   |          8 |        774 |         12 |         64 |        850 |
+| src\features\settings                                                                 |          4 |        140 |          2 |         24 |        166 |
+| src\hooks                                                                             |          1 |         32 |          4 |          9 |         45 |
+| src\lib                                                                               |          1 |          5 |          0 |          2 |          7 |
+| src\pages                                                                             |          8 |         79 |          0 |         16 |         95 |
+| src\services                                                                          |          4 |        154 |          8 |         43 |        205 |
+| src\styles                                                                            |          1 |        166 |          0 |          9 |        175 |
+| src\ui                                                                                |         15 |        528 |          4 |         53 |        585 |
+| src\utils                                                                             |          1 |         11 |          0 |          3 |         14 |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                              | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\react-projects\the-wild-oasis-ts\.env                                              | Properties         |          2 |          0 |          1 |          3 |
+| d:\react-projects\the-wild-oasis-ts\.prettierrc                                       | JSON               |          3 |          0 |          1 |          4 |
+| d:\react-projects\the-wild-oasis-ts\README.md                                         | Markdown           |         45 |          0 |         10 |         55 |
+| d:\react-projects\the-wild-oasis-ts\components.json                                   | JSON               |         21 |          0 |          0 |         21 |
+| d:\react-projects\the-wild-oasis-ts\eslint.config.js                                  | JavaScript         |         45 |          0 |          4 |         49 |
+| d:\react-projects\the-wild-oasis-ts\index.html                                        | HTML               |         20 |          2 |          1 |         23 |
+| d:\react-projects\the-wild-oasis-ts\package.json                                      | JSON               |         57 |          0 |          1 |         58 |
+| d:\react-projects\the-wild-oasis-ts\pnpm-lock.yaml                                    | YAML               |      2,730 |          0 |        634 |      3,364 |
+| d:\react-projects\the-wild-oasis-ts\public\vite.svg                                   | XML                |          1 |          0 |          0 |          1 |
+| d:\react-projects\the-wild-oasis-ts\src\App.tsx                                       | TypeScript JSX     |         63 |          0 |          4 |         67 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\badge.tsx                       | TypeScript JSX     |         41 |          0 |          6 |         47 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\button.tsx                      | TypeScript JSX     |         54 |          0 |          6 |         60 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\checkbox.tsx                    | TypeScript JSX     |         27 |          0 |          4 |         31 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\dialog.tsx                      | TypeScript JSX     |        121 |          0 |         13 |        134 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\dropdown-menu.tsx               | TypeScript JSX     |        238 |          0 |         18 |        256 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\form.tsx                        | TypeScript JSX     |        142 |          0 |         24 |        166 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\input.tsx                       | TypeScript JSX     |         18 |          0 |          4 |         22 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\label.tsx                       | TypeScript JSX     |         19 |          0 |          4 |         23 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\select.tsx                      | TypeScript JSX     |        171 |          0 |         13 |        184 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\skeleton.tsx                    | TypeScript JSX     |         11 |          0 |          3 |         14 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\table.tsx                       | TypeScript JSX     |        104 |          0 |         11 |        115 |
+| d:\react-projects\the-wild-oasis-ts\src\components\ui\textarea.tsx                    | TypeScript JSX     |         15 |          0 |          4 |         19 |
+| d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingColumns.tsx          | TypeScript JSX     |        155 |          0 |          9 |        164 |
+| d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingsDataTable.tsx       | TypeScript JSX     |        119 |          1 |         12 |        132 |
+| d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingsTableOperations.tsx | TypeScript JSX     |         29 |          0 |          2 |         31 |
+| d:\react-projects\the-wild-oasis-ts\src\features\bookings\useBooking.ts               | TypeScript         |         13 |          0 |          2 |         15 |
+| d:\react-projects\the-wild-oasis-ts\src\features\bookings\useBookings.ts              | TypeScript         |         20 |          5 |          6 |         31 |
+| d:\react-projects\the-wild-oasis-ts\src\features\bookings\useDeleteBooking.ts         | TypeScript         |          0 |          0 |          1 |          1 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinColumns.tsx              | TypeScript JSX     |        218 |          0 |         11 |        229 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinFormDialog.tsx           | TypeScript JSX     |         44 |          0 |          4 |         48 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinsDataTable.tsx           | TypeScript JSX     |        124 |          1 |         13 |        138 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinsTableOperations.tsx     | TypeScript JSX     |         28 |          0 |          2 |         30 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\CreateCabinForm.tsx           | TypeScript JSX     |        218 |          9 |         18 |        245 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\ImageUpload.tsx               | TypeScript JSX     |         86 |          2 |          6 |         94 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\useCabinMutations.ts          | TypeScript         |         38 |          0 |          7 |         45 |
+| d:\react-projects\the-wild-oasis-ts\src\features\cabins\useCabins.ts                  | TypeScript         |         18 |          0 |          3 |         21 |
+| d:\react-projects\the-wild-oasis-ts\src\features\settings\UpdateSettingsForm.tsx      | TypeScript JSX     |         94 |          2 |         15 |        111 |
+| d:\react-projects\the-wild-oasis-ts\src\features\settings\useSettings.ts              | TypeScript         |         16 |          0 |          3 |         19 |
+| d:\react-projects\the-wild-oasis-ts\src\features\settings\useUpdateSetting.ts         | TypeScript         |         15 |          0 |          3 |         18 |
+| d:\react-projects\the-wild-oasis-ts\src\features\settings\useUpdateSettings.ts        | TypeScript         |         15 |          0 |          3 |         18 |
+| d:\react-projects\the-wild-oasis-ts\src\hooks\useSortableColumn.tsx                   | TypeScript JSX     |         32 |          4 |          9 |         45 |
+| d:\react-projects\the-wild-oasis-ts\src\lib\utils.ts                                  | TypeScript         |          5 |          0 |          2 |          7 |
+| d:\react-projects\the-wild-oasis-ts\src\main.tsx                                      | TypeScript JSX     |          8 |          0 |          2 |         10 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Account.tsx                             | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Bookings.tsx                            | TypeScript JSX     |         17 |          0 |          3 |         20 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Cabins.tsx                              | TypeScript JSX     |         30 |          0 |          5 |         35 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Dashboard.tsx                           | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Login.tsx                               | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\PageNotFound.tsx                        | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Settings.tsx                            | TypeScript JSX     |         11 |          0 |          2 |         13 |
+| d:\react-projects\the-wild-oasis-ts\src\pages\Users.tsx                               | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| d:\react-projects\the-wild-oasis-ts\src\services\apiBookings.ts                       | TypeScript         |         45 |          0 |          9 |         54 |
+| d:\react-projects\the-wild-oasis-ts\src\services\apiCabins.ts                         | TypeScript         |         76 |          8 |         22 |        106 |
+| d:\react-projects\the-wild-oasis-ts\src\services\apiSettings.ts                       | TypeScript         |         27 |          0 |          7 |         34 |
+| d:\react-projects\the-wild-oasis-ts\src\services\supabase.ts                          | TypeScript         |          6 |          0 |          5 |         11 |
+| d:\react-projects\the-wild-oasis-ts\src\styles\styles.css                             | PostCSS            |        166 |          0 |          9 |        175 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\AppLayout.tsx                              | TypeScript JSX     |         16 |          0 |          2 |         18 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\DataTablePagination.tsx                    | TypeScript JSX     |        135 |          2 |         11 |        148 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\DeleteConfirmationDialog.tsx               | TypeScript JSX     |         52 |          0 |          3 |         55 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\Error.tsx                                  | TypeScript JSX     |          3 |          0 |          1 |          4 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\FilterDropdown.tsx                         | TypeScript JSX     |         65 |          0 |          8 |         73 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\FilterInput.tsx                            | TypeScript JSX     |         40 |          2 |          7 |         49 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\FormRow.tsx                                | TypeScript JSX     |         36 |          0 |          3 |         39 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\Header.tsx                                 | TypeScript JSX     |          5 |          0 |          1 |          6 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\Logo.tsx                                   | TypeScript JSX     |         11 |          0 |          1 |         12 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\MainNav.tsx                                | TypeScript JSX     |         87 |          0 |          2 |         89 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\Sidebar.tsx                                | TypeScript JSX     |         10 |          0 |          2 |         12 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\SortableHeader.tsx                         | TypeScript JSX     |         30 |          0 |          7 |         37 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\Spinner.tsx                                | TypeScript JSX     |          8 |          0 |          1 |          9 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\SpinnerMini.tsx                            | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| d:\react-projects\the-wild-oasis-ts\src\ui\TableSkeleton.tsx                          | TypeScript JSX     |         21 |          0 |          2 |         23 |
+| d:\react-projects\the-wild-oasis-ts\src\utils\helpers.ts                              | TypeScript         |         11 |          0 |          3 |         14 |
+| d:\react-projects\the-wild-oasis-ts\src\vite-env.d.ts                                 | TypeScript         |          0 |          1 |          1 |          2 |
+| d:\react-projects\the-wild-oasis-ts\tsconfig.app.json                                 | JSON               |         26 |          2 |          3 |         31 |
+| d:\react-projects\the-wild-oasis-ts\tsconfig.json                                     | JSON with Comments |         13 |          0 |          1 |         14 |
+| d:\react-projects\the-wild-oasis-ts\tsconfig.node.json                                | JSON               |         20 |          2 |          3 |         25 |
+| d:\react-projects\the-wild-oasis-ts\vite.config.ts                                    | TypeScript         |         16 |          0 |          2 |         18 |
+| Total                                                                                 |                    |      6,256 |         43 |      1,033 |      7,332 |
++---------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

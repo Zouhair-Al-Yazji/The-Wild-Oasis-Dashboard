@@ -22,9 +22,17 @@ type GetBookingsPropsType = {
     field: string;
     direction: string;
   };
+  pagination: {
+    page: number;
+    pageSize: number;
+  };
 };
 
-export async function getBookings({ filter, sortBy }: GetBookingsPropsType) {
+export async function getBookings({
+  filter,
+  sortBy,
+  pagination,
+}: GetBookingsPropsType) {
   let query = supabase
     .from("bookings")
     .select(
@@ -42,12 +50,19 @@ export async function getBookings({ filter, sortBy }: GetBookingsPropsType) {
     });
   }
 
-  const { data, error } = await query;
+  if (pagination) {
+    const from = (pagination.page - 1) * pagination.pageSize;
+    const to = from + pagination.pageSize - 1;
+
+    query = (query as any).range(from, to);
+  }
+
+  const { data, error, count } = await query;
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not be loaded");
   }
 
-  return data;
+  return { data, count };
 }

@@ -29,6 +29,7 @@ type BookingDataTableProps = {
   data?: Booking[];
   isError?: boolean;
   isLoading?: boolean;
+  count: number;
 };
 
 export default function BookingsDataTable({
@@ -36,43 +37,31 @@ export default function BookingsDataTable({
   columns,
   isLoading = false,
   isError = false,
+  count,
 }: BookingDataTableProps) {
   const [searchParams] = useSearchParams();
+  const [sorting, setSorting] = useState<SortingState>([]);
 
-  // Initialize sorting from URL if valid params exist
-  const initialSorting: SortingState = [];
-  const urlSort = searchParams.get("sortBy");
-  const urlSortDirection = searchParams.get("direction");
-
-  const paramPage = Number(searchParams.get("page"));
-  const paramPageSize = Number(searchParams.get("pageSize"));
-
-  if (urlSort && ["asc", "desc"].includes(urlSortDirection || "")) {
-    initialSorting.push({
-      id: urlSort,
-      desc: urlSortDirection === "desc",
-    });
-  }
-
-  const [sorting, setSorting] = useState<SortingState>(initialSorting);
-  const [pagination, setPagination] = useState({
-    pageIndex: paramPage ? paramPage - 1 : 0,
-    pageSize: paramPageSize ? paramPageSize : 5,
-  });
+  const page = Number(searchParams.get("page")) || 1;
+  const pageSize = Number(searchParams.get("pageSize")) || 5;
 
   const table = useReactTable({
     data,
     columns,
     state: {
-      pagination,
       sorting,
+      pagination: {
+        pageIndex: page - 1, // TanStack uses 0-based index
+        pageSize,
+      },
     },
+    pageCount: Math.ceil(count / pageSize),
     onSortingChange: setSorting,
-    onPaginationChange: setPagination,
-    getPaginationRowModel: getPaginationRowModel(),
+    getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: true,
   });
 
   const RenderTable = () => (
@@ -119,13 +108,13 @@ export default function BookingsDataTable({
   );
 
   if (isLoading) return <TableSkeleton />;
-  if (isError) return <Error message="Error loading cabins data" />;
+  if (isError) return <Error message="Error loading bookings data" />;
 
   return (
     <div className="space-y-4">
       <BookingsTableOperations table={table} />
       <RenderTable />
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} count={count} />
     </div>
   );
 }

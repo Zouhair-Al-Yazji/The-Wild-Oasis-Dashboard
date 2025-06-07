@@ -18,97 +18,83 @@ import {
 
 type DataTablePaginationProps<TData> = {
   table: Table<TData>;
+  count: number;
 };
 
 export function DataTablePagination<TData>({
-  table,
+  count,
 }: DataTablePaginationProps<TData>) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Memoize expensive calculations
-  const currentPage = useMemo(() => {
-    const pageParam = searchParams.get("page");
-    return !pageParam ? 1 : Number(pageParam);
-  }, [searchParams]);
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const pageSize = Number(searchParams.get("pageSize")) || 5;
+  const pageCount = Math.ceil(count / pageSize);
 
-  const paginationState = table.getState().pagination;
-  const pageCount = table.getPageCount();
-  const filteredRowCount = table.getFilteredRowModel().rows.length;
+  const navigateToPage = useCallback(
+    (page: number) => {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", page.toString());
+      setSearchParams(params);
+    },
+    [searchParams, setSearchParams],
+  );
 
-  // Optimized navigation functions with useCallback
   const nextPage = useCallback(() => {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    const params = new URLSearchParams(searchParams);
-    params.set("page", next.toString());
-    setSearchParams(params);
-    table.nextPage();
-  }, [currentPage, pageCount, searchParams, setSearchParams, table]);
+    navigateToPage(Math.min(currentPage + 1, pageCount));
+  }, [currentPage, navigateToPage, pageCount]);
 
   const prevPage = useCallback(() => {
-    const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    const params = new URLSearchParams(searchParams);
-    params.set("page", prev.toString());
-    setSearchParams(params);
-    table.previousPage();
-  }, [currentPage, searchParams, setSearchParams, table]);
+    navigateToPage(Math.max(currentPage - 1, 1));
+  }, [currentPage, navigateToPage]);
 
   const goToFirstPage = useCallback(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", "1");
-    setSearchParams(params);
-    table.setPageIndex(0);
-  }, [searchParams, setSearchParams, table]);
+    navigateToPage(1);
+  }, [navigateToPage]);
 
   const goToLastPage = useCallback(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", pageCount.toString());
-    setSearchParams(params);
-    table.setPageIndex(pageCount - 1);
-  }, [pageCount, searchParams, setSearchParams, table]);
+    navigateToPage(pageCount);
+  }, [navigateToPage, pageCount]);
 
   const handlePageSizeChange = useCallback(
     (value: string) => {
-      goToFirstPage();
-      searchParams.set("pageSize", value);
-      setSearchParams(searchParams);
-      table.setPageSize(Number(value));
+      const params = new URLSearchParams(searchParams);
+      params.set("pageSize", value);
+      params.set("page", "1"); // Reset to first page when changing page size
+      setSearchParams(params);
     },
-    [table],
+    [searchParams, setSearchParams],
   );
 
   return (
     <div className="flex items-center justify-between px-2">
       <div className="text-muted-foreground flex-1 text-sm">
-        Total {filteredRowCount} rows
+        Total {count} rows
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
           <p className="text-sm font-medium">Rows per page</p>
-          <Select
-            value={`${paginationState.pageSize}`}
-            onValueChange={handlePageSizeChange}
-          >
+          <Select value={`${pageSize}`} onValueChange={handlePageSizeChange}>
             <SelectTrigger className="h-8 w-[70px]">
-              <SelectValue placeholder={paginationState.pageSize} />
+              <SelectValue placeholder={pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[5, 10, 20, 30].map((pageSize) => (
-                <SelectItem key={pageSize} value={`${pageSize}`}>
-                  {pageSize}
+              {[5, 10, 20, 30].map((size) => (
+                <SelectItem key={size} value={`${size}`}>
+                  {size}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {paginationState.pageIndex + 1} of {pageCount}
+          Page {currentPage} of {pageCount}
         </div>
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={goToFirstPage}
-            disabled={!table.getCanPreviousPage()}
+            disabled={currentPage <= 1}
           >
             <span className="sr-only">Go to first page</span>
             <ChevronsLeft className="h-4 w-4" />
@@ -117,7 +103,7 @@ export function DataTablePagination<TData>({
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={prevPage}
-            disabled={!table.getCanPreviousPage()}
+            disabled={currentPage <= 1}
           >
             <span className="sr-only">Go to previous page</span>
             <ChevronLeft className="h-4 w-4" />
@@ -126,7 +112,7 @@ export function DataTablePagination<TData>({
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={nextPage}
-            disabled={!table.getCanNextPage()}
+            disabled={currentPage >= pageCount}
           >
             <span className="sr-only">Go to next page</span>
             <ChevronRight className="h-4 w-4" />
@@ -135,7 +121,7 @@ export function DataTablePagination<TData>({
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={goToLastPage}
-            disabled={!table.getCanNextPage()}
+            disabled={currentPage >= pageCount}
           >
             <span className="sr-only">Go to last page</span>
             <ChevronsRight className="h-4 w-4" />
