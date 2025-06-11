@@ -1,3 +1,4 @@
+import type { Booking } from "@/features/bookings/useBooking";
 import supabase from "./supabase";
 
 type FilterMethod =
@@ -65,4 +66,35 @@ export async function getBookings({
   }
 
   return { data, count };
+}
+
+export async function getBooking(id: string): Promise<Booking> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, cabins(*), guests(*)")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking does not found");
+  }
+
+  return data;
+}
+
+export async function deleteBooking(id: string): Promise<Booking> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .delete()
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.log(error);
+    throw new Error("Booking could not be deleted");
+  }
+
+  return data;
 }

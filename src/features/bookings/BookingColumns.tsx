@@ -19,10 +19,14 @@ import {
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import { format, isToday } from "date-fns";
 import SortableHeader from "@/ui/SortableHeader";
+import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
+import { useState } from "react";
+import { useDeleteBooking } from "./useDeleteBooking";
+import { useNavigate } from "react-router-dom";
 
-type StatusType = "unconfirmed" | "checked-in" | "checked-out";
+export type StatusType = "unconfirmed" | "checked-in" | "checked-out";
 
-const status = {
+export const STATUS = {
   unconfirmed: "bg-blue-100  text-blue-700",
   "checked-in": "bg-green-100 text-green-700",
   "checked-out": "bg-gray-200 text-gray-700",
@@ -91,7 +95,7 @@ export const columns: ColumnDef<Booking, unknown>[] = [
     header: () => <p className="px-2 uppercase">STATUS</p>,
     cell: ({ row }) => (
       <span
-        className={`${status[row.original.status as StatusType]} rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase`}
+        className={`${STATUS[row.original.status as StatusType]} rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase`}
       >
         {row.original.status.replace("-", " ")}
       </span>
@@ -115,6 +119,17 @@ export const columns: ColumnDef<Booking, unknown>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      const navigate = useNavigate();
+      const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+      const { mutate: deleteBooking, isPending: isDeleting } =
+        useDeleteBooking();
+
+      function handleDelete() {
+        deleteBooking(row.original.id, {
+          onSettled: () => setIsDeleteDialogOpen(false),
+        });
+      }
+
       return (
         <>
           <DropdownMenu>
@@ -133,7 +148,10 @@ export const columns: ColumnDef<Booking, unknown>[] = [
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="group">
+              <DropdownMenuItem
+                onClick={() => navigate(`/bookings/${row.original.id}`)}
+                className="group"
+              >
                 <HiEye className="group-hover:text-primary text-gray-600" />
                 <span>See details</span>
               </DropdownMenuItem>
@@ -150,12 +168,22 @@ export const columns: ColumnDef<Booking, unknown>[] = [
                   <span>Checked out</span>
                 </DropdownMenuItem>
               )}
-              <DropdownMenuItem className="group">
+              <DropdownMenuItem
+                onClick={() => setIsDeleteDialogOpen(true)}
+                className="group"
+              >
                 <HiTrash className="text-gray-600 group-hover:text-red-600" />
                 <span className="group-hover:text-red-600">Delete booking</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <DeleteConfirmationDialog
+            onOpenChange={setIsDeleteDialogOpen}
+            open={isDeleteDialogOpen}
+            onConfirm={handleDelete}
+            isLoading={isDeleting}
+          />
         </>
       );
     },

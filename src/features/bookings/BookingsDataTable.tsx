@@ -51,7 +51,7 @@ export default function BookingsDataTable({
     state: {
       sorting,
       pagination: {
-        pageIndex: page - 1, // TanStack uses 0-based index
+        pageIndex: page - 1,
         pageSize,
       },
     },

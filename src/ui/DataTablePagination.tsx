@@ -18,7 +18,7 @@ import {
 
 type DataTablePaginationProps<TData> = {
   table: Table<TData>;
-  count: number;
+  count?: number;
 };
 
 export function DataTablePagination<TData>({
@@ -28,7 +28,7 @@ export function DataTablePagination<TData>({
 
   const currentPage = Number(searchParams.get("page")) || 1;
   const pageSize = Number(searchParams.get("pageSize")) || 5;
-  const pageCount = Math.ceil(count / pageSize);
+  const pageCount = Math.ceil((count ?? 0) / pageSize);
 
   const navigateToPage = useCallback(
     (page: number) => {
