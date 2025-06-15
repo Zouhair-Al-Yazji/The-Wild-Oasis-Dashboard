@@ -12,6 +12,7 @@ import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
 import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
 import { useDeleteBooking } from "./useDeleteBooking";
 import { useState } from "react";
+import { useCheckout } from "../check-in-out/useCheckout";
 
 export default function BookingDetail() {
   const [isDeleteBookingDialogOpen, setIsDeleteBookingDialogOpen] =
@@ -19,6 +20,7 @@ export default function BookingDetail() {
   const { data: booking, isPending, isError, error } = useBooking();
   const { mutate: deleteBooking, isPending: isDeletingBooking } =
     useDeleteBooking();
+  const { mutate: checkout } = useCheckout();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const { id: bookingId, status } = booking ?? {};
@@ -40,9 +42,9 @@ export default function BookingDetail() {
     <>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <p className="gray-700 text-2xl font-semibold">
+          <h3 className="text-2xl font-semibold text-gray-700">
             Booking #{bookingId}
-          </p>
+          </h3>
           <span
             className={`${STATUS[status as StatusType]} rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase`}
           >
@@ -70,7 +72,7 @@ export default function BookingDetail() {
           </Button>
         )}
         {status === "checked-in" && (
-          <Button>
+          <Button onClick={() => checkout(Number(bookingId))}>
             <HiArrowUpOnSquare />
             Check out
           </Button>
@@ -82,7 +84,7 @@ export default function BookingDetail() {
           Delete Booking
         </Button>
         <Button
-          variant={"secondary"}
+          variant={"outline"}
           className="hover:text-primary"
           onClick={moveBack}
         >

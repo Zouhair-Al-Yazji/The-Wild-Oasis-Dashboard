@@ -98,3 +98,19 @@ export async function deleteBooking(id: string): Promise<Booking> {
 
   return data;
 }
+
+export async function updateBooking(id: number, obj: Partial<Booking>) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update(obj)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.log(error);
+    throw new Error("Booking could not be updated");
+  }
+
+  return data;
+}

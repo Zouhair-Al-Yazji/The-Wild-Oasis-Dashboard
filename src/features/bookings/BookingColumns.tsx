@@ -23,6 +23,7 @@ import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
 import { useState } from "react";
 import { useDeleteBooking } from "./useDeleteBooking";
 import { useNavigate } from "react-router-dom";
+import { useCheckout } from "../check-in-out/useCheckout";
 
 export type StatusType = "unconfirmed" | "checked-in" | "checked-out";
 
@@ -123,6 +124,7 @@ export const columns: ColumnDef<Booking, unknown>[] = [
       const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
       const { mutate: deleteBooking, isPending: isDeleting } =
         useDeleteBooking();
+      const { mutate: checkout, isPending: isCheckingOut } = useCheckout();
 
       function handleDelete() {
         deleteBooking(row.original.id, {
@@ -156,14 +158,21 @@ export const columns: ColumnDef<Booking, unknown>[] = [
                 <span>See details</span>
               </DropdownMenuItem>
               {row.original.status === "unconfirmed" && (
-                <DropdownMenuItem className="group">
+                <DropdownMenuItem
+                  className="group"
+                  onClick={() => navigate(`/checkin/${row.original.id}`)}
+                >
                   <HiArrowDownOnSquare className="group-hover:text-primary text-gray-600" />
                   <span>Checked in</span>
                 </DropdownMenuItem>
               )}
 
               {row.original.status === "checked-in" && (
-                <DropdownMenuItem className="group">
+                <DropdownMenuItem
+                  className="group"
+                  disabled={isCheckingOut}
+                  onClick={() => checkout(Number(row.original.id))}
+                >
                   <HiArrowUpOnSquare className="group-hover:text-primary text-gray-600" />
                   <span>Checked out</span>
                 </DropdownMenuItem>
