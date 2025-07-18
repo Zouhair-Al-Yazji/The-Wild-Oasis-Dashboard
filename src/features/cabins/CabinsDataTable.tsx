@@ -9,7 +9,7 @@ import {
   SortingState,
   ColumnFiltersState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Cabin } from "@/features/cabins/useCabins";
 import {
   Table,
@@ -20,11 +20,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { DataTablePagination } from "../../ui/DataTablePagination";
 import CabinsTableOperations from "./CabinsTableOperations";
 import TableSkeleton from "@/ui/TableSkeleton";
 import Error from "@/ui/Error";
 import { useSearchParams } from "react-router-dom";
+import { ClientPagination } from "@/ui/ClientPagination";
 
 type CabinsDataTableProps = {
   columns: ColumnDef<Cabin, unknown>[];
@@ -39,15 +39,12 @@ export function CabinsDataTable({
   isLoading = false,
   isError = false,
 }: CabinsDataTableProps) {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Initialize sorting from URL if valid params exist
   const initialSorting: SortingState = [];
   const urlSort = searchParams.get("sortBy");
   const urlSortDirection = searchParams.get("direction");
-
-  const paramPage = Number(searchParams.get("page"));
-  const paramPageSize = Number(searchParams.get("pageSize"));
 
   if (urlSort && ["asc", "desc"].includes(urlSortDirection || "")) {
     initialSorting.push({
@@ -56,12 +53,23 @@ export function CabinsDataTable({
     });
   }
 
+  // Initialize pagination from URL
+  const paramPage = Number(searchParams.get("page"));
+  const paramPageSize = Number(searchParams.get("pageSize"));
+
   const [sorting, setSorting] = useState<SortingState>(initialSorting);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = useState({
     pageIndex: paramPage ? paramPage - 1 : 0,
     pageSize: paramPageSize ? paramPageSize : 5,
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", (pagination.pageIndex + 1).toString());
+    params.set("pageSize", pagination.pageSize.toString());
+    setSearchParams(params, { replace: true });
+  }, [pagination, searchParams, setSearchParams]);
 
   const table = useReactTable<Cabin>({
     data,
@@ -131,7 +139,7 @@ export function CabinsDataTable({
     <div className="space-y-4">
       <CabinsTableOperations table={table} />
       <RenderTable />
-      <DataTablePagination table={table} />
+      <ClientPagination table={table} />
     </div>
   );
 }

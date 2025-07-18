@@ -9,7 +9,7 @@ export default function BookingsTableOperations({
   table: Table<Booking>;
 }) {
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center gap-4">
       <FilterInput
         filterField="guests"
         filterPlaceholder="Filter bookings by guest name..."

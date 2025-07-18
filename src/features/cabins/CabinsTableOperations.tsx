@@ -9,7 +9,7 @@ export default function CabinsTableOperations({
   table: Table<Cabin>;
 }) {
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center gap-4">
       <FilterInput
         filterField="name"
         filterPlaceholder="Filter cabins by name..."

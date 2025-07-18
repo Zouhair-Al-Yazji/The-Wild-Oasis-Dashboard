@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import CabinFormDialog from "@/features/cabins/CabinFormDialog";
 
 export default function CabinsPage() {
-  const { data: cabins, isLoading, isError } = useCabins();
+  const { data: cabins, isPending, isError } = useCabins();
   const [isCreateCabinDialogOpen, setIsCreateCabinDialogOpen] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export default function CabinsPage() {
       <CabinsDataTable
         columns={columns}
         data={cabins}
-        isLoading={isLoading}
+        isLoading={isPending}
         isError={isError}
       />
 
