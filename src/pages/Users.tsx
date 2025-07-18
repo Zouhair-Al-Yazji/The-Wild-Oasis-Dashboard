@@ -20,7 +20,7 @@ export default function Users() {
       />
       <div>
         <Button onClick={() => setIsCreateUserDialogOpen(true)}>
-          Add new Cabin
+          Add new user
         </Button>
       </div>
 
