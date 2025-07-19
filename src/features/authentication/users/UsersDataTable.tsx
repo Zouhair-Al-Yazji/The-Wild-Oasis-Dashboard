@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/table";
 import type { SimplifiedUser } from "./useUsers";
 import UsersTableOperations from "./UsersTableOperations";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ClientPagination } from "@/ui/ClientPagination";
 
@@ -40,7 +40,7 @@ export default function UsersDataTable({
   isError = false,
   error,
 }: UserDataTableProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   // Initialize sorting from URL if valid params exist
   const initialSorting: SortingState = [];
@@ -64,13 +64,6 @@ export default function UsersDataTable({
     pageIndex: page ? page - 1 : 0,
     pageSize: pageSize ? pageSize : 5,
   });
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", (pagination.pageIndex + 1).toString());
-    params.set("pageSize", pagination.pageSize.toString());
-    setSearchParams(params, { replace: true });
-  }, [pagination, searchParams, setSearchParams]);
 
   const table = useReactTable<SimplifiedUser>({
     data,

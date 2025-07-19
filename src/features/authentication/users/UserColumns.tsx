@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import type { SimplifiedUser } from "./useUsers";
@@ -13,6 +14,9 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import { HiPencil, HiTrash } from "react-icons/hi2";
 import SortableHeader from "@/ui/SortableHeader";
+import { useNavigate } from "react-router-dom";
+import { useDeleteUser } from "./useDeleteUser";
+import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
 
 export const UserColumns: ColumnDef<SimplifiedUser>[] = [
   {
@@ -92,33 +96,59 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => (
-      <div className="text-right">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4 text-gray-600" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="end"
-            className="w-40"
-            onCloseAutoFocus={(e) => e.preventDefault()}
-          >
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="group cursor-pointer">
-              <HiPencil className="group-hover:text-primary text-gray-600" />
-              <span>Update user</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="group cursor-pointer">
-              <HiTrash className="text-gray-600 group-hover:text-red-600" />
-              <span>Delete user</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-    ),
+    cell: ({ row }) => {
+      const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+      const { isPending: isDeleting, mutate: deleteUser } = useDeleteUser();
+      const navigate = useNavigate();
+
+      function handleDeleteUser() {
+        deleteUser(row.original.id, {
+          onSettled: () => setIsDeleteDialogOpen(false),
+        });
+      }
+
+      return (
+        <div className="text-right">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4 text-gray-600" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="w-40"
+              onCloseAutoFocus={(e) => e.preventDefault()}
+            >
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="group cursor-pointer"
+                onClick={() => navigate("/account")}
+              >
+                <HiPencil className="group-hover:text-primary text-gray-600" />
+                <span>Update user</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="group cursor-pointer"
+                onClick={() => setIsDeleteDialogOpen(true)}
+              >
+                <HiTrash className="text-gray-600 group-hover:text-red-600" />
+                <span>Delete user</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DeleteConfirmationDialog
+            onConfirm={handleDeleteUser}
+            onOpenChange={setIsDeleteDialogOpen}
+            open={isDeleteDialogOpen}
+            isLoading={isDeleting}
+            resourceName="user"
+          />
+        </div>
+      );
+    },
   },
 ];

@@ -214,6 +214,7 @@ export const columns: ColumnDef<Cabin>[] = [
             onOpenChange={setIsDeleteDialogOpen}
             onConfirm={handleDelete}
             isLoading={isDeleting}
+            resourceName="cabin"
           />
 
           <CabinFormDialog

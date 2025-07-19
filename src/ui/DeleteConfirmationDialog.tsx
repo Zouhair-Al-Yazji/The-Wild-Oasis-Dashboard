@@ -14,6 +14,7 @@ export type PropsDialogType = {
   onOpenChange: (open: boolean) => void;
   onConfirm: () => void;
   isLoading: boolean;
+  resourceName: string;
 };
 
 export function DeleteConfirmationDialog({
@@ -21,6 +22,7 @@ export function DeleteConfirmationDialog({
   onOpenChange,
   onConfirm,
   isLoading,
+  resourceName,
 }: PropsDialogType) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -28,8 +30,8 @@ export function DeleteConfirmationDialog({
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete the
-            cabin.
+            This action cannot be undone. This will permanently delete this{" "}
+            {resourceName}.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

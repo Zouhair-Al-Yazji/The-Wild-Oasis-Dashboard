@@ -192,6 +192,7 @@ export const columns: ColumnDef<Booking, unknown>[] = [
             open={isDeleteDialogOpen}
             onConfirm={handleDelete}
             isLoading={isDeleting}
+            resourceName="booking"
           />
         </>
       );

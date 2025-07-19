@@ -21,11 +21,17 @@ type ClientPaginationProps<TData> = {
 export function ClientPagination<TData>({
   table,
 }: ClientPaginationProps<TData>) {
+  const pageIndex = table.getState().pagination.pageIndex;
+  const pageSize = table.getState().pagination.pageSize;
+  const totalRows = table.getFilteredRowModel().rows.length;
+
+  const startIndex = totalRows === 0 ? 0 : pageIndex * pageSize + 1;
+  const endIndex = Math.min((pageIndex + 1) * pageSize, totalRows);
+
   return (
     <div className="flex items-center justify-between px-2">
       <div className="text-muted-foreground flex-1 text-sm">
-        Showing {table.getRowModel().rows.length} of{" "}
-        {table.getFilteredRowModel().rows.length} rows
+        Showing {startIndex}-{endIndex} of {totalRows} rows
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">

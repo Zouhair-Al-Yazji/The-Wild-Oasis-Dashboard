@@ -39,6 +39,12 @@ export async function getUsers() {
   return data;
 }
 
+export async function deleteUser(id: string) {
+  const { error } = await supabaseAdmin.auth.admin.deleteUser(id);
+
+  if (error) throw new Error(error.message);
+}
+
 export async function getCurrentUser() {
   const {
     data: { session },

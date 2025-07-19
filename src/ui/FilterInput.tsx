@@ -25,10 +25,8 @@ export default function FilterInput<TData>({
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
 
-    // Update the table filter
     column?.setFilterValue(value);
 
-    // Update URL params
     if (value) {
       searchParams.set(filterField, value);
     } else {
