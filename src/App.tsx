@@ -10,6 +10,7 @@ import {
 import { Toaster } from "react-hot-toast";
 import AppLayout from "./ui/AppLayout";
 import Spinner from "./ui/Spinner";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const Login = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -30,7 +31,13 @@ export default function App() {
       <Router>
         <Suspense fallback={<Spinner />} />
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="cabins" element={<Cabins />} />

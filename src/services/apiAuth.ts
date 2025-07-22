@@ -29,7 +29,29 @@ export async function signup({ fullName, email, password, gender }: User) {
   return data;
 }
 
-export async function login() {}
+export async function login({
+  password,
+  email,
+}: {
+  password: string;
+  email: string;
+}) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) throw new Error(error.message);
+}
 
 export async function getUsers() {
   const { data, error } = await supabaseAdmin.auth.admin.listUsers();
@@ -61,3 +83,13 @@ export async function getCurrentUser() {
 
   return user;
 }
+
+export async function updateCurrentUser({
+  password,
+  fullName,
+  avatar,
+}: {
+  password: string;
+  fullName: string;
+  avatar: string;
+}) {}
