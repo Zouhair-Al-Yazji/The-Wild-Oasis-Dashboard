@@ -6,6 +6,7 @@ import AvatarImageUploader from "@/components/AvatarImageUploader";
 import { useUpdateUser } from "./users/useUpdateUser";
 import { useForm } from "react-hook-form";
 import SpinnerMini from "@/ui/SpinnerMini";
+import { useState } from "react";
 
 type UpdateUserFormType = {
   fullName?: string;
@@ -15,10 +16,21 @@ type UpdateUserFormType = {
 export default function UpdateUserDataForm() {
   const { updateUser, isUpdating } = useUpdateUser();
   const { user } = useUser();
-  const { handleSubmit, formState, register } = useForm<UpdateUserFormType>();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const { handleSubmit, formState, register } = useForm<UpdateUserFormType>({
+    defaultValues: {
+      fullName: user?.user_metadata.fullName,
+      avatar: user?.user_metadata.avatar,
+    },
+  });
   const { errors } = formState;
 
-  function onSubmit() {}
+  function onSubmit({ fullName }: UpdateUserFormType) {
+    updateUser({
+      fullName,
+      avatar: avatarFile || undefined,
+    });
+  }
 
   return (
     <form
@@ -42,7 +54,6 @@ export default function UpdateUserDataForm() {
         <Input
           type="text"
           disabled={isUpdating}
-          value={user?.user_metadata.fullName}
           {...register("fullName", {
             required: "This field is required",
           })}
@@ -50,7 +61,10 @@ export default function UpdateUserDataForm() {
       </FormRow>
 
       <FormRow label="Avatar image" htmlFor="avatar" className="py-3">
-        <AvatarImageUploader />
+        <AvatarImageUploader
+          onFileChange={setAvatarFile}
+          initialAvatar={user?.user_metadata.avatar}
+        />
       </FormRow>
 
       <div className="flex justify-end gap-3 pt-3">

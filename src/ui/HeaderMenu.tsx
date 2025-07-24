@@ -18,6 +18,10 @@ export default function HeaderMenu() {
   const { user } = useUser();
   const { logout, isPending } = useLogout();
   const navigate = useNavigate();
+  const userFallback = user?.user_metadata.fullName
+    .split(" ")
+    .map((n: string) => n[0].toUpperCase())
+    .join("");
 
   return (
     <DropdownMenu>
@@ -30,8 +34,11 @@ export default function HeaderMenu() {
             <AvatarImage
               src={user?.user_metadata.avatar}
               alt={user?.user_metadata.fullName}
+              className="h-full w-full rounded-full border border-gray-200 object-cover"
             />
-            <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+            <AvatarFallback className="rounded-lg">
+              {userFallback}
+            </AvatarFallback>
           </Avatar>
           <div className="grid flex-1 text-left text-sm leading-tight">
             <span className="truncate font-medium">
@@ -53,8 +60,12 @@ export default function HeaderMenu() {
               <AvatarImage
                 src={user?.user_metadata.avatar}
                 alt={user?.user_metadata.fullName}
+                loading="lazy"
+                className="h-full w-full rounded-full border border-gray-200 object-center"
               />
-              <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <AvatarFallback className="rounded-lg">
+                {userFallback}
+              </AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">

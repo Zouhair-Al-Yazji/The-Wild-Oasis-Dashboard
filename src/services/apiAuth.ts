@@ -91,7 +91,7 @@ export async function updateCurrentUser({
 }: {
   password?: string;
   fullName?: string;
-  avatar?: string;
+  avatar?: File;
 }) {
   // 1. Update password or fullName
   const updateData: {
