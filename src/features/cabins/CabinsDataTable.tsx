@@ -9,7 +9,7 @@ import {
   SortingState,
   ColumnFiltersState,
 } from "@tanstack/react-table";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Cabin } from "@/features/cabins/useCabins";
 import {
   Table,
@@ -39,7 +39,7 @@ export function CabinsDataTable({
   isLoading = false,
   isError = false,
 }: CabinsDataTableProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   // Initialize sorting from URL if valid params exist
   const initialSorting: SortingState = [];
@@ -63,13 +63,6 @@ export function CabinsDataTable({
     pageIndex: paramPage ? paramPage - 1 : 0,
     pageSize: paramPageSize ? paramPageSize : 5,
   });
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", (pagination.pageIndex + 1).toString());
-    params.set("pageSize", pagination.pageSize.toString());
-    setSearchParams(params, { replace: true });
-  }, [pagination, searchParams, setSearchParams]);
 
   const table = useReactTable<Cabin>({
     data,

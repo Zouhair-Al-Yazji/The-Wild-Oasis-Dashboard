@@ -21,7 +21,6 @@ export default function ImageUpload({
 }: ImageUploadProps) {
   return (
     <>
-      {/* Image Preview */}
       {watch("image") instanceof FileList && watch("image").length > 0 && (
         <div className="relative h-32 w-full overflow-hidden rounded-lg border border-gray-200">
           <img

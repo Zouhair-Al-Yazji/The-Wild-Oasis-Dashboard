@@ -87,7 +87,6 @@ export default function CreateCabinForm({
       className="max-h-[calc(90vh-180px)] divide-y divide-gray-200 overflow-y-auto px-1"
     >
       <div className="space-y-6 py-4">
-        {/* Cabin Name */}
         <FormRow
           label="Cabin name"
           htmlFor="name"
@@ -107,7 +106,6 @@ export default function CreateCabinForm({
           />
         </FormRow>
 
-        {/* Max Capacity */}
         <FormRow
           label="Maximum capacity"
           htmlFor="maxCapacity"
@@ -131,7 +129,6 @@ export default function CreateCabinForm({
           />
         </FormRow>
 
-        {/* Regular Price */}
         <FormRow
           label="Regular price"
           htmlFor="regularPrice"
@@ -155,7 +152,6 @@ export default function CreateCabinForm({
           />
         </FormRow>
 
-        {/* Discount */}
         <FormRow
           label="Discount"
           htmlFor="discount"
@@ -178,7 +174,6 @@ export default function CreateCabinForm({
           />
         </FormRow>
 
-        {/* Description */}
         <FormRow
           label="Description"
           htmlFor="description"
@@ -197,7 +192,6 @@ export default function CreateCabinForm({
           />
         </FormRow>
 
-        {/* Image Upload */}
         <FormRow
           label={`Cabin photo ${isUpdateSession ? "(optional)" : ""}`}
           htmlFor="image"
