@@ -14,7 +14,6 @@ export function useLogin() {
       queryClient.setQueryData(["user"], user);
     },
     onError: (error) => {
-      console.error("Error", error);
       toast.error(error.message);
     },
   });

@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { useLogin } from "@/features/authentication/useLogin";
-import FormRow from "@/ui/FormRow";
 import SpinnerMini from "@/ui/SpinnerMini";
 
 type LoginFormData = {
@@ -44,6 +43,7 @@ export function LoginForm({
                   type="email"
                   disabled={isPending}
                   placeholder="m@example.com"
+                  autoComplete="email"
                   {...register("email", {
                     required: "This Field is required",
                     pattern: {
@@ -69,6 +69,7 @@ export function LoginForm({
                 <Input
                   type="password"
                   id="password"
+                  autoComplete="current-password"
                   disabled={isPending}
                   {...register("password", {
                     required: "This field is required",
