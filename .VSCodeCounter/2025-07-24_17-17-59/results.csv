@@ -1,0 +1,116 @@
+"filename", "language", "JSON", "JavaScript", "Properties", "TypeScript", "JSON with Comments", "YAML", "TypeScript JSX", "PostCSS", "XML", "HTML", "Markdown", "comment", "blank", "total"
+"d:\react-projects\the-wild-oasis-ts\.env", "Properties", 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3
+"d:\react-projects\the-wild-oasis-ts\.prettierrc", "JSON", 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4
+"d:\react-projects\the-wild-oasis-ts\README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 0, 10, 55
+"d:\react-projects\the-wild-oasis-ts\components.json", "JSON", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 22
+"d:\react-projects\the-wild-oasis-ts\eslint.config.js", "JavaScript", 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 49
+"d:\react-projects\the-wild-oasis-ts\index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 2, 1, 23
+"d:\react-projects\the-wild-oasis-ts\package.json", "JSON", 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 61
+"d:\react-projects\the-wild-oasis-ts\pnpm-lock.yaml", "YAML", 0, 0, 0, 0, 0, 3952, 0, 0, 0, 0, 0, 0, 726, 4678
+"d:\react-projects\the-wild-oasis-ts\public\vite.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"d:\react-projects\the-wild-oasis-ts\src\App.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 4, 78
+"d:\react-projects\the-wild-oasis-ts\src\components\AvatarImageUploader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 85, 0, 0, 0, 0, 0, 6, 91
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\avatar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 6, 52
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\badge.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 6, 47
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 0, 0, 6, 60
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 83, 0, 0, 0, 0, 0, 10, 93
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\checkbox.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 4, 31
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 121, 0, 0, 0, 0, 0, 13, 134
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 238, 0, 0, 0, 0, 0, 18, 256
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\form.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 142, 0, 0, 0, 0, 0, 24, 166
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 4, 22
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 4, 23
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\login-form.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 130, 0, 0, 0, 0, 0, 5, 135
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\radio-group.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 5, 44
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\select.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 171, 0, 0, 0, 0, 0, 13, 184
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\skeleton.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 3, 14
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\table.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 104, 0, 0, 0, 0, 0, 11, 115
+"d:\react-projects\the-wild-oasis-ts\src\components\ui\textarea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 4, 19
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\UpdatePasswordForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 7, 88
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\UpdateUserDataForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 8, 81
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\useLogin.ts", "TypeScript", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 4, 23
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\useLogout.ts", "TypeScript", 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\useSignup.ts", "TypeScript", 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\CreateUserForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 187, 0, 0, 0, 0, 0, 9, 196
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\UserColumns.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 149, 0, 0, 0, 0, 0, 6, 155
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\UserFormDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 3, 34
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\UsersDataTable.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 125, 0, 0, 0, 0, 2, 12, 139
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\UsersTableOperations.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 3, 32
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\useDeleteUser.ts", "TypeScript", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\useUpdateUser.ts", "TypeScript", 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\useUser.ts", "TypeScript", 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 4, 26
+"d:\react-projects\the-wild-oasis-ts\src\features\authentication\users\useUsers.ts", "TypeScript", 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 1, 5, 41
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingColumns.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 190, 0, 0, 0, 0, 0, 12, 202
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingDataBox.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 10, 109
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingDetail.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 94, 0, 0, 0, 0, 0, 10, 104
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingFormDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 4, 43
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingsDataTable.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 112, 0, 0, 0, 0, 0, 9, 121
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\BookingsTableOperations.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 2, 31
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\CreateBookingForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 5, 35
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\useBooking.ts", "TypeScript", 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 5, 44
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\useBookings.ts", "TypeScript", 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 5, 10, 75
+"d:\react-projects\the-wild-oasis-ts\src\features\bookings\useDeleteBooking.ts", "TypeScript", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 3, 20
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinColumns.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 219, 0, 0, 0, 0, 0, 11, 230
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinFormDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 44, 0, 0, 0, 0, 0, 4, 48
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinsDataTable.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 124, 0, 0, 0, 0, 2, 13, 139
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\CabinsTableOperations.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 2, 30
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\CreateCabinForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 218, 0, 0, 0, 0, 3, 18, 239
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\ImageUpload.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 1, 6, 93
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\useCabinMutations.ts", "TypeScript", 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 0, 0, 7, 45
+"d:\react-projects\the-wild-oasis-ts\src\features\cabins\useCabins.ts", "TypeScript", 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 3, 21
+"d:\react-projects\the-wild-oasis-ts\src\features\check-in-out\CheckinBooking.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 121, 0, 0, 0, 0, 0, 14, 135
+"d:\react-projects\the-wild-oasis-ts\src\features\check-in-out\useCheckin.ts", "TypeScript", 0, 0, 0, 29, 0, 0, 0, 0, 0, 0, 0, 0, 3, 32
+"d:\react-projects\the-wild-oasis-ts\src\features\check-in-out\useCheckout.ts", "TypeScript", 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19
+"d:\react-projects\the-wild-oasis-ts\src\features\settings\UpdateSettingsForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 94, 0, 0, 0, 0, 2, 15, 111
+"d:\react-projects\the-wild-oasis-ts\src\features\settings\useSettings.ts", "TypeScript", 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19
+"d:\react-projects\the-wild-oasis-ts\src\features\settings\useUpdateSetting.ts", "TypeScript", 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"d:\react-projects\the-wild-oasis-ts\src\features\settings\useUpdateSettings.ts", "TypeScript", 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"d:\react-projects\the-wild-oasis-ts\src\hooks\use-file-upload.ts", "TypeScript", 0, 0, 0, 345, 0, 0, 0, 0, 0, 0, 0, 13, 53, 411
+"d:\react-projects\the-wild-oasis-ts\src\hooks\useMoveBack.ts", "TypeScript", 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"d:\react-projects\the-wild-oasis-ts\src\hooks\useSortableColumn.ts", "TypeScript", 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 4, 9, 45
+"d:\react-projects\the-wild-oasis-ts\src\lib\utils.ts", "TypeScript", 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"d:\react-projects\the-wild-oasis-ts\src\main.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"d:\react-projects\the-wild-oasis-ts\src\pages\Account.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 4, 27
+"d:\react-projects\the-wild-oasis-ts\src\pages\Booking.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2, 6
+"d:\react-projects\the-wild-oasis-ts\src\pages\Bookings.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 1, 4, 35
+"d:\react-projects\the-wild-oasis-ts\src\pages\Cabins.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 5, 35
+"d:\react-projects\the-wild-oasis-ts\src\pages\Checkin.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2, 6
+"d:\react-projects\the-wild-oasis-ts\src\pages\Dashboard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 2, 11
+"d:\react-projects\the-wild-oasis-ts\src\pages\Login.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 2, 12
+"d:\react-projects\the-wild-oasis-ts\src\pages\PageNotFound.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 4
+"d:\react-projects\the-wild-oasis-ts\src\pages\Settings.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 2, 13
+"d:\react-projects\the-wild-oasis-ts\src\pages\Users.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 4, 34
+"d:\react-projects\the-wild-oasis-ts\src\services\apiAuth.ts", "TypeScript", 0, 0, 0, 106, 0, 0, 0, 0, 0, 0, 0, 3, 28, 137
+"d:\react-projects\the-wild-oasis-ts\src\services\apiBookings.ts", "TypeScript", 0, 0, 0, 97, 0, 0, 0, 0, 0, 0, 0, 0, 20, 117
+"d:\react-projects\the-wild-oasis-ts\src\services\apiCabins.ts", "TypeScript", 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0, 8, 22, 106
+"d:\react-projects\the-wild-oasis-ts\src\services\apiSettings.ts", "TypeScript", 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 0, 0, 7, 34
+"d:\react-projects\the-wild-oasis-ts\src\services\supabase.ts", "TypeScript", 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 7, 16
+"d:\react-projects\the-wild-oasis-ts\src\styles\styles.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 166, 0, 0, 0, 0, 9, 175
+"d:\react-projects\the-wild-oasis-ts\src\ui\AppLayout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 2, 18
+"d:\react-projects\the-wild-oasis-ts\src\ui\ClientPagination.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 0, 0, 5, 103
+"d:\react-projects\the-wild-oasis-ts\src\ui\DarkModeToggle.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 2, 11
+"d:\react-projects\the-wild-oasis-ts\src\ui\DataItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 20
+"d:\react-projects\the-wild-oasis-ts\src\ui\DeleteConfirmationDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 0, 0, 3, 57
+"d:\react-projects\the-wild-oasis-ts\src\ui\Error.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 4
+"d:\react-projects\the-wild-oasis-ts\src\ui\FilterDropdown.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 0, 0, 8, 73
+"d:\react-projects\the-wild-oasis-ts\src\ui\FilterInput.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 7, 47
+"d:\react-projects\the-wild-oasis-ts\src\ui\Flag.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1, 6
+"d:\react-projects\the-wild-oasis-ts\src\ui\FormRow.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 0, 3, 39
+"d:\react-projects\the-wild-oasis-ts\src\ui\Header.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 2, 12
+"d:\react-projects\the-wild-oasis-ts\src\ui\HeaderMenu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 108, 0, 0, 0, 0, 0, 4, 112
+"d:\react-projects\the-wild-oasis-ts\src\ui\Logo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 1, 12
+"d:\react-projects\the-wild-oasis-ts\src\ui\MainNav.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 2, 89
+"d:\react-projects\the-wild-oasis-ts\src\ui\ProtectedRoute.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 5, 28
+"d:\react-projects\the-wild-oasis-ts\src\ui\ServerPagination.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 8, 109
+"d:\react-projects\the-wild-oasis-ts\src\ui\Sidebar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 2, 12
+"d:\react-projects\the-wild-oasis-ts\src\ui\SortableHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 7, 37
+"d:\react-projects\the-wild-oasis-ts\src\ui\Spinner.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 1, 9
+"d:\react-projects\the-wild-oasis-ts\src\ui\SpinnerMini.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 2, 11
+"d:\react-projects\the-wild-oasis-ts\src\ui\TableSkeleton.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 2, 23
+"d:\react-projects\the-wild-oasis-ts\src\utils\helpers.ts", "TypeScript", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 3, 14
+"d:\react-projects\the-wild-oasis-ts\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"d:\react-projects\the-wild-oasis-ts\tsconfig.app.json", "JSON", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 31
+"d:\react-projects\the-wild-oasis-ts\tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 1, 14
+"d:\react-projects\the-wild-oasis-ts\tsconfig.node.json", "JSON", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 25
+"d:\react-projects\the-wild-oasis-ts\vite.config.ts", "TypeScript", 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
+"Total", "-", 130, 45, 2, 1128, 13, 3952, 4543, 166, 1, 20, 45, 52, 1417, 11514
