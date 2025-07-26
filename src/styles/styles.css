@@ -3,13 +3,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-* {
-  transition:
-    background-color 300ms ease,
-    border-color 300ms ease,
-    color 300ms ease;
-}
-
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 12px;
@@ -42,14 +35,6 @@
 * {
   scrollbar-width: auto;
   scrollbar-color: var(--border) var(--background);
-  transition: all 300ms ease;
-}
-
-html,
-body {
-  transition:
-    background-color 300ms ease,
-    color 300ms ease;
 }
 
 :root {
