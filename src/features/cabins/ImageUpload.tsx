@@ -22,7 +22,7 @@ export default function ImageUpload({
   return (
     <>
       {watch("image") instanceof FileList && watch("image").length > 0 && (
-        <div className="relative h-32 w-full overflow-hidden rounded-lg border border-gray-200">
+        <div className="border-border relative h-32 w-full overflow-hidden rounded-lg border">
           <img
             src={URL.createObjectURL(watch("image")[0] as File)}
             alt="Preview"
@@ -36,7 +36,7 @@ export default function ImageUpload({
       {isUpdateSession &&
         typeof cabinToUpdate?.image === "string" &&
         (!(watch("image") instanceof FileList) || !watch("image")?.length) && (
-          <div className="relative h-32 w-full overflow-hidden rounded-lg border border-gray-200">
+          <div className="border-border relative h-32 w-full overflow-hidden rounded-lg border">
             <img
               src={cabinToUpdate.image}
               alt="Current cabin"
@@ -49,15 +49,15 @@ export default function ImageUpload({
       <div className="flex w-full items-center justify-center">
         <Label
           htmlFor="image"
-          className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
+          className="border-muted bg-muted hover:bg-accent flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <CloudUpload className="h-8 w-8 text-gray-500" />
-            <p className="mb-2 text-sm text-gray-500">
+            <CloudUpload className="text-muted-foreground h-8 w-8" />
+            <p className="text-muted-foreground mb-2 text-sm">
               <span className="font-semibold">Click to upload</span>
               &nbsp;or drag and drop
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-muted-foreground text-xs">
               SVG, PNG, JPG or GIF (MAX. 4MB)
             </p>
           </div>
@@ -73,17 +73,17 @@ export default function ImageUpload({
         </Label>
       </div>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-destructive text-sm">{error}</p>}
 
       {watch("image") instanceof FileList && watch("image").length > 0 && (
-        <p className="text-sm text-gray-600">
+        <p className="text-muted-foreground text-sm">
           Selected: {(watch("image") as FileList)[0].name}
         </p>
       )}
       {isUpdateSession &&
         typeof cabinToUpdate?.image === "string" &&
         (!(watch("image") instanceof FileList) || !watch("image")?.length) && (
-          <p className="text-sm text-gray-600">
+          <p className="text-muted-foreground text-sm">
             Current image: {cabinToUpdate.image.split("/").pop()}
           </p>
         )}

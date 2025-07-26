@@ -29,7 +29,6 @@ export default function UpdateSettingsForm() {
       return;
     }
 
-    // Convert to number if the field is numeric
     const numericFields = [
       "minBookingLength",
       "maxBookingLength",
@@ -51,7 +50,7 @@ export default function UpdateSettingsForm() {
   if (isPending) return <Spinner />;
 
   return (
-    <form className="bg-background divide-y divide-gray-100 rounded-md border border-gray-100 px-10 py-6 text-gray-700">
+    <form className="bg-sidebar border-border text-foreground divide-y rounded-md border px-10 py-6">
       <div className="pb-4">
         <FormRow label="Minimum nights/booking" htmlFor="min-nights">
           <Input
@@ -61,7 +60,7 @@ export default function UpdateSettingsForm() {
             min={1}
             disabled={isUpdating}
             onBlur={(e) => handleUpdate(e, "minBookingLength")}
-            className="bg-gray-50"
+            className="bg-card"
           />
         </FormRow>
       </div>
@@ -72,7 +71,7 @@ export default function UpdateSettingsForm() {
             type="number"
             id="max-nights"
             defaultValue={maxBookingLength}
-            className="bg-gray-50"
+            className="bg-card"
             disabled={isUpdating}
             onBlur={(e) => handleUpdate(e, "maxBookingLength")}
           />
@@ -84,7 +83,7 @@ export default function UpdateSettingsForm() {
           <Input
             type="number"
             id="max-guests"
-            className="bg-gray-50"
+            className="bg-card"
             defaultValue={maxGuestsPerBooking}
             disabled={isUpdating}
             onBlur={(e) => handleUpdate(e, "maxGuestsPerBooking")}
@@ -96,7 +95,7 @@ export default function UpdateSettingsForm() {
         <FormRow label="Breakfast price" htmlFor="breakfast-price">
           <Input
             type="number"
-            className="bg-gray-50"
+            className="bg-card"
             id="breakfast-price"
             min={1}
             defaultValue={breakfastPrice}

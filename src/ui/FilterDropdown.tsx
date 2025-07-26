@@ -49,7 +49,10 @@ export default function FilterDropdown<TData>({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="bg-background border py-[17px]" asChild>
+      <DropdownMenuTrigger
+        className="bg-background border-border border py-[17px]"
+        asChild
+      >
         <Button
           variant="ghost"
           className="h-8"

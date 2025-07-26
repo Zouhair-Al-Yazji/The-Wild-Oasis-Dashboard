@@ -34,7 +34,7 @@ export default function UpdateUserDataForm() {
 
   return (
     <form
-      className="bg-background divide-y divide-gray-200 rounded-md border border-gray-200 px-10 py-6"
+      className="bg-sidebar border-border divide-y rounded-md border px-10 py-6"
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormRow label="Email address" htmlFor="email" className="py-3">

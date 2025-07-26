@@ -42,7 +42,7 @@ export default function BookingDetail() {
     <>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <h3 className="text-2xl font-semibold text-gray-700">
+          <h3 className="text-foreground text-2xl font-semibold">
             Booking #{bookingId}
           </h3>
           <span
@@ -54,7 +54,7 @@ export default function BookingDetail() {
 
         <Button
           variant={"ghost"}
-          className="text-primary hover:text-primary"
+          className="text-foreground"
           onClick={moveBack}
         >
           <ArrowLeft />
@@ -83,11 +83,7 @@ export default function BookingDetail() {
         >
           Delete Booking
         </Button>
-        <Button
-          variant={"outline"}
-          className="hover:text-primary"
-          onClick={moveBack}
-        >
+        <Button variant={"outline"} onClick={moveBack}>
           Back
         </Button>
       </div>
@@ -97,6 +93,7 @@ export default function BookingDetail() {
         onOpenChange={setIsDeleteBookingDialogOpen}
         open={isDeleteBookingDialogOpen}
         onConfirm={handleDelete}
+        resourceName="booking"
       />
     </>
   );

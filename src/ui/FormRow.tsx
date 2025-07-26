@@ -31,7 +31,7 @@ export default function FormRow({
       <Label htmlFor={htmlFor}>{label}</Label>
       <div className={cn("space-y-2", model && "col-span-2")}>
         {children}
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-destructive text-sm">{error}</p>}
       </div>
     </div>
   );

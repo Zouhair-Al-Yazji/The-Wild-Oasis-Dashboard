@@ -21,7 +21,7 @@ export default function Bookings() {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold text-gray-700">All Bookings</h2>
+      <h2 className="text-foreground text-2xl font-semibold">All Bookings</h2>
       <BookingsDataTable
         columns={columns}
         data={data}

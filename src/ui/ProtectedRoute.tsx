@@ -18,7 +18,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
 
   if (isPending)
     return (
-      <div className="flex h-dvh items-center justify-center bg-gray-50">
+      <div className="bg-background flex h-dvh items-center justify-center">
         <Spinner />
       </div>
     );

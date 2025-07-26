@@ -26,7 +26,7 @@ export default function HeaderMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="cursor-pointer rounded-sm px-2 py-1.5 hover:bg-gray-50"
+        className="hover:bg-sidebar-accent cursor-pointer rounded-sm px-2 py-1.5"
         asChild
       >
         <div className="flex items-center gap-2">
@@ -34,23 +34,26 @@ export default function HeaderMenu() {
             <AvatarImage
               src={user?.user_metadata.avatar}
               alt={user?.user_metadata.fullName}
-              className="h-full w-full rounded-full border border-gray-200 object-cover"
+              className="border-border h-full w-full border object-cover"
             />
             <AvatarFallback className="rounded-lg">
               {userFallback}
             </AvatarFallback>
           </Avatar>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-medium">
+            <span className="text-foreground truncate font-medium">
               {user?.user_metadata.fullName}
             </span>
-            <span className="truncate text-xs">{user?.email}</span>
+            <span className="text-muted-foreground truncate text-xs">
+              {user?.email}
+            </span>
           </div>
           <ChevronsUpDown className="ml-auto size-4" />
         </div>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent
-        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+        className="bg-background w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
         align="start"
         sideOffset={4}
       >
@@ -61,43 +64,47 @@ export default function HeaderMenu() {
                 src={user?.user_metadata.avatar}
                 alt={user?.user_metadata.fullName}
                 loading="lazy"
-                className="h-full w-full rounded-full border border-gray-200 object-center"
+                className="border-border h-full w-full rounded-full border object-center"
               />
               <AvatarFallback className="rounded-lg">
                 {userFallback}
               </AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">
+              <span className="text-foreground truncate font-medium">
                 {user?.user_metadata.fullName}
               </span>
-              <span className="truncate text-xs">{user?.email}</span>
+              <span className="text-muted-foreground truncate text-xs">
+                {user?.email}
+              </span>
             </div>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-border" />
 
         <DropdownMenuGroup>
           <DropdownMenuItem
-            className="cursor-pointer"
+            className="focus:bg-accent focus:text-accent-foreground cursor-pointer"
             onClick={() => navigate("/account")}
           >
             <BadgeCheck />
             Account
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="cursor-pointer"
+            className="focus:bg-accent focus:text-accent-foreground cursor-pointer"
             onClick={() => navigate("/settings")}
           >
             <Settings />
             Settings
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer" onClick={() => logout()}>
+        <DropdownMenuSeparator className="bg-border" />
+        <DropdownMenuItem
+          className="focus:bg-accent focus:text-accent-foreground cursor-pointer"
+          onClick={() => logout()}
+        >
           {!isPending ? (
             <>
-              {" "}
               <LogOut />
               Log out
             </>

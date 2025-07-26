@@ -32,8 +32,8 @@ export default function BookingDataBox({ booking }: BookingDataBoxProps) {
   } = booking;
 
   return (
-    <section className="bg-background overflow-hidden rounded-md border">
-      <header className="bg-primary text-accent flex items-center justify-between px-10 py-5 font-medium">
+    <section className="bg-sidebar border-border overflow-hidden rounded-md border">
+      <header className="bg-primary text-primary-foreground flex items-center justify-between px-10 py-5 font-medium">
         <div className="flex items-center gap-4 font-semibold">
           <HiOutlineHomeModern className="h-8 w-8" />
           <p>
@@ -52,9 +52,9 @@ export default function BookingDataBox({ booking }: BookingDataBoxProps) {
         </div>
       </header>
       <section className="px-10 pt-8 pb-3">
-        <div className="mb-4 flex items-center gap-3 text-gray-500">
+        <div className="text-muted-foreground mb-4 flex items-center gap-3">
           {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
-          <p className="font-medium text-gray-700">
+          <p className="text-foreground font-medium">
             {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
           </p>
           <span>&bull;</span>
@@ -100,7 +100,7 @@ export default function BookingDataBox({ booking }: BookingDataBoxProps) {
         </div>
       </section>
 
-      <footer className="px-10 py-4 text-right text-xs">
+      <footer className="text-muted-foreground px-10 py-4 text-right text-xs">
         Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}
       </footer>
     </section>

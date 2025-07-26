@@ -11,7 +11,7 @@ export default function Users() {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold text-gray-700">All users</h2>
+      <h2 className="text-foreground text-2xl font-semibold">All users</h2>
       <UsersDataTable
         columns={UserColumns}
         data={simplifiedUsers}

@@ -34,8 +34,8 @@ export const columns: ColumnDef<Cabin>[] = [
           />
         </div>
       ) : (
-        <div className="flex h-12 w-20 items-center justify-center bg-gray-100">
-          <span className="text-xs text-gray-500">No image</span>
+        <div className="bg-muted flex h-12 w-20 items-center justify-center">
+          <span className="text-muted-foreground text-xs">No image</span>
         </div>
       );
     },
@@ -189,22 +189,22 @@ export const columns: ColumnDef<Cabin>[] = [
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="group" onClick={handleDuplicate}>
-                <HiSquare2Stack className="group-hover:text-primary text-gray-600" />
+                <HiSquare2Stack className="group-hover:text-primary text-muted-foreground" />
                 <span>Duplicate cabin</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="group"
                 onClick={() => setIsUpdateFormDialogOpen(true)}
               >
-                <HiPencil className="group-hover:text-primary text-gray-600" />
+                <HiPencil className="group-hover:text-primary text-muted-foreground" />
                 <span>Update cabin</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="group"
                 onClick={() => setIsDeleteDialogOpen(true)}
               >
-                <HiTrash className="text-gray-600 group-hover:text-red-600" />
-                <span className="group-hover:text-red-600">Delete cabin</span>
+                <HiTrash className="text-muted-foreground group-hover:text-destructive" />
+                <span>Delete cabin</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

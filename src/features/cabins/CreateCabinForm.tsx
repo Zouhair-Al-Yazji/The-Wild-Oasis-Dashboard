@@ -84,7 +84,7 @@ export default function CreateCabinForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-h-[calc(90vh-180px)] divide-y divide-gray-200 overflow-y-auto px-1"
+      className="max-h-[calc(90vh-180px)] divide-y overflow-y-auto px-1"
     >
       <div className="space-y-6 py-4">
         <FormRow

@@ -16,13 +16,15 @@ export default function MainNav() {
           <NavLink
             className={({ isActive }) =>
               cn(
-                "group flex items-center gap-3 px-6 py-3 font-medium text-gray-600 transition-all duration-300 hover:rounded-sm hover:bg-gray-50 hover:text-gray-800 active:bg-gray-50",
-                isActive && "active bg-gray-50 text-gray-800",
+                "group flex items-center gap-3 px-6 py-3 font-medium transition-all duration-300 hover:rounded-sm",
+                "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent",
+                isActive &&
+                  "active bg-sidebar-accent text-sidebar-accent-foreground rounded-sm",
               )
             }
             to="/dashboard"
           >
-            <HiOutlineHome className="group-hover:text-primary group-[.active]:text-primary size-6 text-gray-400" />
+            <HiOutlineHome className="group-hover:text-primary group-[.active]:text-primary text-sidebar-foreground/70 size-6 transition-colors duration-300" />
             <span>Home</span>
           </NavLink>
         </li>
@@ -30,13 +32,15 @@ export default function MainNav() {
           <NavLink
             className={({ isActive }) =>
               cn(
-                "group flex items-center gap-3 px-6 py-3 font-medium text-gray-600 transition-all duration-300 hover:rounded-sm hover:bg-gray-50 hover:text-gray-800 active:bg-gray-50",
-                isActive && "active bg-gray-50 text-gray-800",
+                "group flex items-center gap-3 px-6 py-3 font-medium transition-all duration-300 hover:rounded-sm",
+                "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent",
+                isActive &&
+                  "active bg-sidebar-accent text-sidebar-accent-foreground rounded-sm",
               )
             }
             to="/bookings"
           >
-            <HiOutlineCalendarDays className="group-hover:text-primary group-[.active]:text-primary size-6 text-gray-400" />
+            <HiOutlineCalendarDays className="group-hover:text-primary group-[.active]:text-primary text-sidebar-foreground/70 size-6 transition-colors duration-300" />
             <span>Bookings</span>
           </NavLink>
         </li>
@@ -44,13 +48,15 @@ export default function MainNav() {
           <NavLink
             className={({ isActive }) =>
               cn(
-                "group flex items-center gap-3 px-6 py-3 font-medium text-gray-600 transition-all duration-300 hover:rounded-sm hover:bg-gray-50 hover:text-gray-800 active:bg-gray-50",
-                isActive && "active bg-gray-50 text-gray-800",
+                "group flex items-center gap-3 px-6 py-3 font-medium transition-all duration-300 hover:rounded-sm",
+                "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent",
+                isActive &&
+                  "active bg-sidebar-accent text-sidebar-accent-foreground rounded-sm",
               )
             }
             to="/cabins"
           >
-            <HiOutlineHomeModern className="group-hover:text-primary group-[.active]:text-primary size-6 text-gray-400" />
+            <HiOutlineHomeModern className="group-hover:text-primary group-[.active]:text-primary text-sidebar-foreground/70 size-6 transition-colors duration-300" />
             <span>Cabins</span>
           </NavLink>
         </li>
@@ -58,13 +64,15 @@ export default function MainNav() {
           <NavLink
             className={({ isActive }) =>
               cn(
-                "group flex items-center gap-3 px-6 py-3 font-medium text-gray-600 transition-all duration-300 hover:rounded-sm hover:bg-gray-50 hover:text-gray-800 active:bg-gray-50",
-                isActive && "active bg-gray-50 text-gray-800",
+                "group flex items-center gap-3 px-6 py-3 font-medium transition-all duration-300 hover:rounded-sm",
+                "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent",
+                isActive &&
+                  "active bg-sidebar-accent text-sidebar-accent-foreground rounded-sm",
               )
             }
             to="/users"
           >
-            <HiOutlineUsers className="group-hover:text-primary group-[.active]:text-primary size-6 text-gray-400" />
+            <HiOutlineUsers className="group-hover:text-primary group-[.active]:text-primary text-sidebar-foreground/70 size-6 transition-colors duration-300" />
             <span>Users</span>
           </NavLink>
         </li>
@@ -72,13 +80,15 @@ export default function MainNav() {
           <NavLink
             className={({ isActive }) =>
               cn(
-                "group flex items-center gap-3 px-6 py-3 font-medium text-gray-600 transition-all duration-300 hover:rounded-sm hover:bg-gray-50 hover:text-gray-800 active:bg-gray-50",
-                isActive && "active bg-gray-50 text-gray-800",
+                "group flex items-center gap-3 px-6 py-3 font-medium transition-all duration-300 hover:rounded-sm",
+                "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent",
+                isActive &&
+                  "active bg-sidebar-accent text-sidebar-accent-foreground rounded-sm",
               )
             }
             to="/settings"
           >
-            <HiOutlineCog6Tooth className="group-hover:text-primary group-[.active]:text-primary size-6 text-gray-400" />
+            <HiOutlineCog6Tooth className="group-hover:text-primary group-[.active]:text-primary text-sidebar-foreground/70 size-6 transition-colors duration-300" />
             <span>Settings</span>
           </NavLink>
         </li>

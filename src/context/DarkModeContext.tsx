@@ -11,7 +11,7 @@ const DarkModeContext = createContext<DarkModeContextType | undefined>(
 );
 
 function DarkModeProvider({ children }: { children: ReactNode }) {
-  const [isDarkMode, setIsDarkMode] = useLocalStorageState(
+  const [isDarkMode, setIsDarkMode] = useLocalStorageState<boolean>(
     () => window.matchMedia("(prefers-color-scheme: dark)").matches,
     "isDarkMode",
   );
@@ -41,7 +41,7 @@ function DarkModeProvider({ children }: { children: ReactNode }) {
 function useDarkMode() {
   const context = useContext(DarkModeContext);
   if (context === undefined) {
-    throw new Error("DarkModeContext was used outside the DarkModeProvider");
+    throw new Error("useDarkMode must be used within a DarkModeProvider");
   }
 
   return context;

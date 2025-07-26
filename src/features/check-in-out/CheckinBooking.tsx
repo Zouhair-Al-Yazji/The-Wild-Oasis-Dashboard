@@ -71,14 +71,10 @@ export default function CheckinBooking() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-semibold text-gray-700">
+        <h3 className="text-foreground text-2xl font-semibold">
           Check in booking #{bookingId}
         </h3>
-        <Button
-          variant={"ghost"}
-          className="text-primary hover:text-primary"
-          onClick={moveBack}
-        >
+        <Button variant={"ghost"} onClick={moveBack}>
           <ArrowLeft /> Back
         </Button>
       </div>
@@ -86,7 +82,7 @@ export default function CheckinBooking() {
       <BookingDataBox booking={booking} />
 
       {!hasBreakfast && (
-        <div className="bg-background flex items-center gap-3 rounded-sm border px-10 py-6">
+        <div className="bg-sidebar flex items-center gap-3 rounded-sm border px-10 py-6">
           <Checkbox
             checked={addBreakfast}
             onCheckedChange={() => {
@@ -101,7 +97,7 @@ export default function CheckinBooking() {
         </div>
       )}
 
-      <div className="bg-background flex items-center gap-3 rounded-md border px-10 py-6">
+      <div className="bg-sidebar flex items-center gap-3 rounded-md border px-10 py-6">
         <Checkbox
           checked={confirmPaid}
           onCheckedChange={() => {

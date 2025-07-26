@@ -83,7 +83,7 @@ export function CabinsDataTable({
   });
 
   const RenderTable = () => (
-    <div className="bg-background rounded-md border">
+    <div className="bg-sidebar border-border rounded-md border">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

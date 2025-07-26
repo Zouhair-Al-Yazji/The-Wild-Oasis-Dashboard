@@ -28,9 +28,12 @@ import { useCheckout } from "../check-in-out/useCheckout";
 export type StatusType = "unconfirmed" | "checked-in" | "checked-out";
 
 export const STATUS = {
-  unconfirmed: "bg-blue-100  text-blue-700",
-  "checked-in": "bg-green-100 text-green-700",
-  "checked-out": "bg-gray-200 text-gray-700",
+  unconfirmed:
+    "bg-blue-100  text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+  "checked-in":
+    "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300",
+  "checked-out":
+    "bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
 };
 
 export const columns: ColumnDef<Booking, unknown>[] = [
@@ -40,7 +43,9 @@ export const columns: ColumnDef<Booking, unknown>[] = [
     cell: ({ row }) => {
       const cabins = row.getValue("cabins") as { name: string };
 
-      return <div className="px-2 font-medium">{cabins?.name}</div>;
+      return (
+        <div className="text-foreground px-2 font-medium">{cabins?.name}</div>
+      );
     },
   },
   {
@@ -54,8 +59,8 @@ export const columns: ColumnDef<Booking, unknown>[] = [
 
       return (
         <div className="flex flex-col gap-0.5">
-          <p className="font-medium">{guests?.fullName}</p>
-          <p className="text-xs text-gray-600">{guests?.email}</p>
+          <p className="text-foreground font-medium">{guests?.fullName}</p>
+          <p className="text-muted-foreground text-xs">{guests?.email}</p>
         </div>
       );
     },
@@ -77,14 +82,14 @@ export const columns: ColumnDef<Booking, unknown>[] = [
     ),
     cell: ({ row }) => (
       <div className="flex flex-col gap-0.5 px-2">
-        <p className="font-medium">
+        <p className="text-foreground font-medium">
           {isToday(new Date(row.original.startDate))
             ? "Today"
             : formatDistanceFromNow(row.original.startDate)}{" "}
           &rarr; {row.original.numNights}{" "}
           {row.original.numNights > 1 ? "nights" : "night"} stay
         </p>
-        <p className="text-xs text-gray-600">
+        <p className="text-muted-foreground text-xs">
           {format(new Date(row.original.startDate), "LLL dd yyyy")} &mdash;{" "}
           {format(new Date(row.original.endDate), "LLL dd yyyy")}
         </p>
@@ -112,7 +117,7 @@ export const columns: ColumnDef<Booking, unknown>[] = [
       <SortableHeader sortKey="totalPrice" column={column} title="amount" />
     ),
     cell: ({ row }) => (
-      <div className="px-2 font-medium">
+      <div className="text-foreground px-2 font-medium">
         <p>{formatCurrency(row.original.totalPrice)}</p>
       </div>
     ),
@@ -146,43 +151,44 @@ export const columns: ColumnDef<Booking, unknown>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
+              className="bg-background"
               onCloseAutoFocus={(e) => e.preventDefault()}
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => navigate(`/bookings/${row.original.id}`)}
-                className="group"
+                className="group focus:bg-accent focus:text-accent-foreground"
               >
-                <HiEye className="group-hover:text-primary text-gray-600" />
+                <HiEye className="group-hover:text-primary text-muted-foreground" />
                 <span>See details</span>
               </DropdownMenuItem>
               {row.original.status === "unconfirmed" && (
                 <DropdownMenuItem
-                  className="group"
+                  className="group focus:bg-accent focus:text-accent-foreground"
                   onClick={() => navigate(`/checkin/${row.original.id}`)}
                 >
-                  <HiArrowDownOnSquare className="group-hover:text-primary text-gray-600" />
+                  <HiArrowDownOnSquare className="group-hover:text-primary text-muted-foreground" />
                   <span>Checked in</span>
                 </DropdownMenuItem>
               )}
 
               {row.original.status === "checked-in" && (
                 <DropdownMenuItem
-                  className="group"
+                  className="group focus:bg-accent focus:text-accent-foreground"
                   disabled={isCheckingOut}
                   onClick={() => checkout(Number(row.original.id))}
                 >
-                  <HiArrowUpOnSquare className="group-hover:text-primary text-gray-600" />
+                  <HiArrowUpOnSquare className="group-hover:text-primary text-muted-foreground" />
                   <span>Checked out</span>
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem
                 onClick={() => setIsDeleteDialogOpen(true)}
-                className="group"
+                className="group focus:bg-accent focus:text-accent-foreground"
               >
-                <HiTrash className="text-gray-600 group-hover:text-red-600" />
-                <span className="group-hover:text-red-600">Delete booking</span>
+                <HiTrash className="text-muted-foreground group-hover:text-destructive" />
+                <span>Delete booking</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

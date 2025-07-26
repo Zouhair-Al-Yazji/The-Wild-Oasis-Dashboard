@@ -11,7 +11,7 @@ export default function CabinsPage() {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold text-gray-700">All cabins</h2>
+      <h2 className="text-foreground text-2xl font-semibold">All cabins</h2>
       <CabinsDataTable
         columns={columns}
         data={cabins}

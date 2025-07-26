@@ -17,6 +17,7 @@ import SortableHeader from "@/ui/SortableHeader";
 import { useNavigate } from "react-router-dom";
 import { useDeleteUser } from "./useDeleteUser";
 import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
+import { Badge } from "@/components/ui/badge";
 
 export const UserColumns: ColumnDef<SimplifiedUser>[] = [
   {
@@ -26,7 +27,7 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
       const avatarUrl = row.original.avatar;
 
       return typeof avatarUrl === "string" ? (
-        <div className="mx-2 h-11 w-11 overflow-hidden rounded-full border border-gray-200">
+        <div className="border-border mx-2 h-11 w-11 overflow-hidden rounded-full border">
           <img
             src={avatarUrl}
             alt={`avatar ${row.original.fullName}`}
@@ -34,9 +35,9 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
           />
         </div>
       ) : (
-        <div className="mx-2 h-11 w-11 overflow-hidden rounded-full border border-gray-200">
+        <div className="border-border mx-2 h-11 w-11 overflow-hidden rounded-full border">
           <img
-            src="/default-user.jpg"
+            src="default-user.jpg"
             alt={`avatar ${row.original.fullName}`}
             className="h-full w-full object-cover"
           />
@@ -48,7 +49,7 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
     accessorKey: "fullName",
     header: () => <div className="px-2 uppercase">Username</div>,
     cell: ({ row }) => (
-      <div className="px-2 font-medium text-gray-700">
+      <div className="text-foreground px-2 font-medium">
         {row.getValue("fullName")}
       </div>
     ),
@@ -57,7 +58,7 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
     accessorKey: "email",
     header: () => <div className="px-2 uppercase">Email</div>,
     cell: ({ row }) => (
-      <div className="px-2 font-medium text-gray-700">
+      <div className="text-foreground px-2 font-medium">
         {row.getValue("email")}
       </div>
     ),
@@ -68,13 +69,19 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
     cell: ({ row }) => (
       <div className="w-fit rounded-full px-2 py-1 text-xs font-medium">
         {row.getValue("gender") === "boy" ? (
-          <span className="rounded-full bg-blue-100 px-2 py-1 text-blue-800">
+          <Badge
+            variant="default"
+            className="bg-primary text-primary-foreground"
+          >
             Male
-          </span>
+          </Badge>
         ) : (
-          <span className="rounded-full bg-pink-100 px-2 py-1 text-pink-800">
+          <Badge
+            variant="secondary"
+            className="bg-accent text-accent-foreground"
+          >
             Female
-          </span>
+          </Badge>
         )}
       </div>
     ),
@@ -89,7 +96,7 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
       <SortableHeader sortKey="created_at" title="created at" column={column} />
     ),
     cell: ({ row }) => (
-      <div className="px-2 text-sm font-medium text-gray-700">
+      <div className="text-foreground px-2 text-sm font-medium">
         {format(new Date(row.getValue("created_at")), "MM/dd/yyyy")}
       </div>
     ),
@@ -113,7 +120,7 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
                 <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4 text-gray-600" />
+                <MoreHorizontal className="text-muted-foreground h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
@@ -127,14 +134,14 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
                 className="group cursor-pointer"
                 onClick={() => navigate("/account")}
               >
-                <HiPencil className="group-hover:text-primary text-gray-600" />
+                <HiPencil className="group-hover:text-primary text-muted-foreground" />
                 <span>Update user</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="group cursor-pointer"
                 onClick={() => setIsDeleteDialogOpen(true)}
               >
-                <HiTrash className="text-gray-600 group-hover:text-red-600" />
+                <HiTrash className="group-hover:text-destructive text-gray-600" />
                 <span>Delete user</span>
               </DropdownMenuItem>
             </DropdownMenuContent>

@@ -83,7 +83,7 @@ export default function UsersDataTable({
   });
 
   const RenderTable = () => (
-    <div className="bg-background rounded-md border">
+    <div className="bg-sidebar rounded-md border">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
