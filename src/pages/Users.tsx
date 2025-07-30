@@ -6,7 +6,7 @@ import { useUsers } from "@/features/authentication/users/useUsers";
 import { UserColumns } from "@/features/authentication/users/UserColumns";
 
 export default function Users() {
-  const { simplifiedUsers, isPending, isError } = useUsers();
+  const { data, isPending, isError } = useUsers();
   const [isCreateUserDialogOpen, setIsCreateUserDialogOpen] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ export default function Users() {
       <h2 className="text-foreground text-2xl font-semibold">All users</h2>
       <UsersDataTable
         columns={UserColumns}
-        data={simplifiedUsers}
+        data={data}
         isLoading={isPending}
         isError={isError}
       />

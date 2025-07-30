@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import type { SimplifiedUser } from "./useUsers";
+import type { ProfileUser } from "./useUsers";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,8 +18,9 @@ import { useNavigate } from "react-router-dom";
 import { useDeleteUser } from "./useDeleteUser";
 import { DeleteConfirmationDialog } from "@/ui/DeleteConfirmationDialog";
 import { Badge } from "@/components/ui/badge";
+import { useUser } from "./useUser";
 
-export const UserColumns: ColumnDef<SimplifiedUser>[] = [
+export const UserColumns: ColumnDef<ProfileUser>[] = [
   {
     id: "avatar",
     header: () => <div className="px-2 uppercase">Avatar</div>,
@@ -106,6 +107,7 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
     cell: ({ row }) => {
       const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
       const { isPending: isDeleting, mutate: deleteUser } = useDeleteUser();
+      const { user } = useUser();
       const navigate = useNavigate();
 
       function handleDeleteUser() {
@@ -130,13 +132,15 @@ export const UserColumns: ColumnDef<SimplifiedUser>[] = [
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="group cursor-pointer"
-                onClick={() => navigate("/account")}
-              >
-                <HiPencil className="group-hover:text-primary text-muted-foreground" />
-                <span>Update user</span>
-              </DropdownMenuItem>
+              {row.original.id === user?.id && (
+                <DropdownMenuItem
+                  className="group cursor-pointer"
+                  onClick={() => navigate("/account")}
+                >
+                  <HiPencil className="group-hover:text-primary text-muted-foreground" />
+                  <span>Update user</span>
+                </DropdownMenuItem>
+              )}
               <DropdownMenuItem
                 className="group cursor-pointer"
                 onClick={() => setIsDeleteDialogOpen(true)}

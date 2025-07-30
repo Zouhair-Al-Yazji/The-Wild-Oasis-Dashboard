@@ -19,15 +19,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { SimplifiedUser } from "./useUsers";
+import type { ProfileUser } from "./useUsers";
 import UsersTableOperations from "./UsersTableOperations";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ClientPagination } from "@/ui/ClientPagination";
 
 type UserDataTableProps = {
-  columns: ColumnDef<SimplifiedUser, unknown>[];
-  data?: SimplifiedUser[];
+  columns: ColumnDef<ProfileUser, unknown>[];
+  data?: ProfileUser[];
   isLoading?: boolean;
   isError?: boolean;
   error?: string;
@@ -65,7 +65,7 @@ export default function UsersDataTable({
     pageSize: pageSize ? pageSize : 5,
   });
 
-  const table = useReactTable<SimplifiedUser>({
+  const table = useReactTable<ProfileUser>({
     data,
     columns,
     state: {

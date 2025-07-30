@@ -68,7 +68,7 @@ export default function App() {
             style: {
               fontSize: "16px",
               maxWidth: "500px",
-              backgroundColor: "var(--background)",
+              backgroundColor: "var(--sidebar)",
               color: "var(--foreground)",
             },
           }}

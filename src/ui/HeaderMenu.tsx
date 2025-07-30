@@ -19,7 +19,7 @@ export default function HeaderMenu() {
   const { logout, isPending } = useLogout();
   const navigate = useNavigate();
   const userFallback = user?.user_metadata.fullName
-    .split(" ")
+    ?.split(" ")
     .map((n: string) => n[0].toUpperCase())
     .join("");
 

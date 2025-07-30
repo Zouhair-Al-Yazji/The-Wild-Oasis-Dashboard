@@ -6,7 +6,11 @@ export default function DarkModeToggle() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <Button variant={"ghost"} onClick={toggleDarkMode}>
+    <Button
+      variant={"ghost"}
+      className="hover:bg-sidebar-accent"
+      onClick={toggleDarkMode}
+    >
       {isDarkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
     </Button>
   );

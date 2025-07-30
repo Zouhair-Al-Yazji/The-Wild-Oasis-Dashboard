@@ -1,14 +1,8 @@
 import type { User } from "@/features/authentication/users/useUser";
-import supabase, { supabaseAdmin, supabaseUrl } from "@/services/supabase";
+import supabase, { supabaseUrl } from "@/services/supabase";
 
 export async function signup({ fullName, email, password, gender }: User) {
-  const username =
-    fullName
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "")
-      .replace(/[^a-zA-Z0-9]/g, "")
-      .substring(0, 20) || "user";
+  const username = generateUsername(fullName);
 
   let { data, error } = await supabase.auth.signUp({
     email,
@@ -16,7 +10,7 @@ export async function signup({ fullName, email, password, gender }: User) {
     options: {
       data: {
         fullName,
-        avatar: `https://avatar.iran.liara.run/public/${gender}?username=${username}`,
+        avatar: getDefaultAvatar(gender, username),
         gender,
       },
     },
@@ -26,7 +20,64 @@ export async function signup({ fullName, email, password, gender }: User) {
     throw new Error(error.message);
   }
 
+  if (!data?.user) {
+    throw new Error("User creation failed - no user data returned");
+  }
+
+  await createUserProfile({
+    id: data.user.id,
+    email: data.user?.email,
+    avatar: data.user?.user_metadata.avatar,
+    created_at: data.user?.created_at,
+    fullName: data.user?.user_metadata.fullName,
+    gender: data.user?.user_metadata.gender,
+  });
+
   return data;
+}
+
+function generateUsername(fullName: string) {
+  return (
+    fullName
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/[^a-zA-Z0-9]/g, "")
+      .substring(0, 20) || "user"
+  );
+}
+
+function getDefaultAvatar(gender: string, username: string) {
+  return `https://avatar.iran.liara.run/public/${gender}?username=${username}`;
+}
+
+type UserProfileParams = {
+  id: string;
+  fullName: string;
+  gender: string;
+  email?: string;
+  avatar?: string;
+  created_at?: string;
+};
+
+export async function createUserProfile({
+  email,
+  gender,
+  fullName,
+  avatar,
+  id,
+  created_at,
+}: UserProfileParams) {
+  const { error } = await supabase.from("profiles").insert({
+    id,
+    fullName,
+    gender,
+    avatar,
+    email,
+    created_at,
+  });
+
+  if (error) throw new Error(error.message);
 }
 
 export async function login({
@@ -40,6 +91,7 @@ export async function login({
     email,
     password,
   });
+
   if (error) {
     throw new Error(error.message);
   }
@@ -54,7 +106,7 @@ export async function logout() {
 }
 
 export async function getUsers() {
-  const { data, error } = await supabaseAdmin.auth.admin.listUsers();
+  const { data, error } = await supabase.from("profiles").select("*");
 
   if (error) throw new Error(error.message);
 
@@ -62,9 +114,9 @@ export async function getUsers() {
 }
 
 export async function deleteUser(id: string) {
-  const { error } = await supabaseAdmin.auth.admin.deleteUser(id);
+  const { error } = await supabase.from("profiles").delete().eq("id", id);
 
-  if (error) throw new Error(error.message);
+  if (error) throw error;
 }
 
 export async function getCurrentUser() {
@@ -105,17 +157,23 @@ export async function updateCurrentUser({
   if (password) updateData.password = password;
   if (fullName) updateData.data = { ...updateData.data, fullName };
 
-  const { data, error } = await supabase.auth.updateUser(updateData);
+  const { data: authData, error } = await supabase.auth.updateUser(updateData);
 
   if (error) throw new Error(error.message);
 
-  if (!avatar) return data;
+  if (!avatar) {
+    await updateProfilesTable(authData.user.id, { fullName });
+    return authData;
+  }
 
   // 2. Upload the avatar image
-  const fileName = `avatar-${data.user.id}-${Math.random()}`;
+  const fileName = `avatar-${authData.user.id}-${Date.now()}`;
   const { error: storageError } = await supabase.storage
     .from("avatars")
-    .upload(fileName, avatar);
+    .upload(fileName, avatar, {
+      cacheControl: "3600",
+      upsert: true,
+    });
 
   if (storageError) {
     throw new Error(storageError.message);
@@ -133,5 +191,26 @@ export async function updateCurrentUser({
 
   if (updatedUserError) throw new Error(updatedUserError.message);
 
+  await updateProfilesTable(updatedUser.user.id, {
+    fullName: fullName || updatedUser.user.user_metadata?.fullName,
+    avatar: avatarUrl,
+  });
+
   return updatedUser;
+}
+
+export async function updateProfilesTable(
+  userId: string,
+  updates: { fullName?: string; avatar?: string },
+) {
+  const { error } = await supabase
+    .from("profiles")
+    .update({
+      fullName: updates.fullName,
+      avatar: updates.avatar,
+    })
+    .eq("id", userId);
+
+  if (error)
+    throw new Error(`Failed to update profiles table: ${error.message}`);
 }
