@@ -38,7 +38,7 @@ export default function ForgotPasswordForm({
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col">
-                <h1 className="text-foreground text-2xl font-bold">
+                <h1 className="text-foreground text-2xl font-medium">
                   Forgot your password?
                 </h1>
                 <p className="text-muted-foreground">
@@ -89,8 +89,11 @@ export default function ForgotPasswordForm({
               </Link>
             </p>
           </form>
-          <div className="bg-sidebar relative hidden md:flex md:items-center md:justify-center">
+          <div className="bg-sidebar relative hidden md:flex md:flex-col md:items-center md:justify-center md:gap-3">
             <img src={src} alt="Image" className="w-60" />
+            <p className="text-muted-foreground text-sm">
+              Your gateway to exceptional hospitality management
+            </p>
           </div>
         </CardContent>
       </Card>

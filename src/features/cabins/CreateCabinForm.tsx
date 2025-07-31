@@ -100,6 +100,9 @@ export default function CreateCabinForm({
           <Input
             type="text"
             id="name"
+            disabled={isWorking}
+            placeholder="cabin name"
+            className="text-accent-foreground"
             {...register("name", {
               required: "This field is required",
             })}
@@ -119,6 +122,8 @@ export default function CreateCabinForm({
           <Input
             type="number"
             id="maxCapacity"
+            disabled={isWorking}
+            className="text-accent-foreground"
             {...register("maxCapacity", {
               required: "This field is required",
               min: {
@@ -142,6 +147,8 @@ export default function CreateCabinForm({
           <Input
             type="number"
             id="regularPrice"
+            className="text-accent-foreground"
+            disabled={isWorking}
             {...register("regularPrice", {
               required: "This field is required",
               min: {
@@ -165,6 +172,9 @@ export default function CreateCabinForm({
           <Input
             type="number"
             id="discount"
+            min={0}
+            disabled={isWorking}
+            className="text-accent-foreground"
             {...register("discount", {
               required: "This field is required",
               validate: (value: number) =>
@@ -186,6 +196,9 @@ export default function CreateCabinForm({
         >
           <Textarea
             id="description"
+            className="text-accent-foreground"
+            placeholder="cabin description"
+            disabled={isWorking}
             {...register("description", {
               required: "This field is required",
             })}

@@ -39,7 +39,7 @@ export function LoginForm({
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-foreground text-2xl font-bold">
+                <h1 className="text-foreground text-2xl font-medium">
                   Welcome back
                 </h1>
                 <p className="text-muted-foreground text-balance">
@@ -78,7 +78,7 @@ export function LoginForm({
                   </Label>
                   <Link
                     to="/forgot-password"
-                    className="text-muted-foreground hover:text-foreground ml-auto text-xs underline-offset-2 hover:underline"
+                    className="text-muted-foreground hover:text-foreground ml-auto text-sm underline-offset-2 hover:underline"
                   >
                     Forgot your password?
                   </Link>
@@ -119,8 +119,11 @@ export function LoginForm({
               </Button>
             </div>
           </form>
-          <div className="bg-sidebar relative hidden md:flex md:items-center md:justify-center">
+          <div className="bg-sidebar relative hidden md:flex md:flex-col md:items-center md:justify-center md:gap-3">
             <img src={src} alt="Image" className="w-60" />
+            <p className="text-muted-foreground text-sm">
+              Your gateway to exceptional hospitality management
+            </p>
           </div>
         </CardContent>
       </Card>

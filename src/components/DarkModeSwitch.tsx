@@ -1,0 +1,31 @@
+import { useId } from "react";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useDarkMode } from "@/context/DarkModeContext";
+
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+
+export default function DarkModeSwitch() {
+  const id = useId();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
+  return (
+    <div className="inline-flex items-center gap-2">
+      <Switch
+        id={id}
+        checked={isDarkMode}
+        onCheckedChange={toggleDarkMode}
+        aria-label="Toggle switch"
+        className="cursor-pointer"
+      />
+      <Label htmlFor={id}>
+        <span className="sr-only">Toggle switch</span>
+        {!isDarkMode ? (
+          <SunIcon size={16} aria-hidden="true" />
+        ) : (
+          <MoonIcon size={16} aria-hidden="true" />
+        )}
+      </Label>
+    </div>
+  );
+}

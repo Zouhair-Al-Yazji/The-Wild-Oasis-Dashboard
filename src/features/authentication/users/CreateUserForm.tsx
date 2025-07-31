@@ -58,6 +58,8 @@ export default function CreateUserForm({
           <Input
             type="text"
             id="fullName"
+            placeholder="John doe"
+            className="text-accent-foreground"
             disabled={isSigningUp}
             {...register("fullName", {
               required: "This field is required",
@@ -85,6 +87,8 @@ export default function CreateUserForm({
             type="email"
             id="email"
             disabled={isSigningUp}
+            placeholder="you@example.com"
+            className="text-accent-foreground"
             {...register("email", {
               required: "This field is required",
               pattern: {
@@ -110,6 +114,8 @@ export default function CreateUserForm({
           <Input
             type="password"
             id="password"
+            placeholder="password"
+            className="text-accent-foreground"
             disabled={isSigningUp}
             {...register("password", {
               required: "This field is required",
@@ -136,6 +142,8 @@ export default function CreateUserForm({
           <Input
             type="password"
             id="passwordConfirm"
+            placeholder="repeat password"
+            className="text-accent-foreground"
             disabled={isSigningUp}
             {...register("passwordConfirm", {
               required: "This field is required",
