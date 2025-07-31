@@ -9,6 +9,7 @@ import { useLogin } from "@/features/authentication/useLogin";
 import SpinnerMini from "@/ui/SpinnerMini";
 import { HiEye, HiEyeSlash } from "react-icons/hi2";
 import { useDarkMode } from "@/context/DarkModeContext";
+import { Link } from "react-router-dom";
 
 type LoginFormData = {
   email: string;
@@ -75,12 +76,12 @@ export function LoginForm({
                   <Label htmlFor="password" className="text-foreground">
                     Password
                   </Label>
-                  <a
-                    href="#"
+                  <Link
+                    to="/forgot-password"
                     className="text-muted-foreground hover:text-foreground ml-auto text-xs underline-offset-2 hover:underline"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
                 <div className="relative">
                   <Input
@@ -116,11 +117,6 @@ export function LoginForm({
               <Button type="submit" className="w-full">
                 {isPending ? <SpinnerMini label="Logging" /> : "Login"}
               </Button>
-              <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-                <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  Or continue with
-                </span>
-              </div>
             </div>
           </form>
           <div className="bg-sidebar relative hidden md:flex md:items-center md:justify-center">

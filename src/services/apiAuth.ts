@@ -214,3 +214,14 @@ export async function updateProfilesTable(
   if (error)
     throw new Error(`Failed to update profiles table: ${error.message}`);
 }
+
+export async function forgotPassword(email: string) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/account`,
+  });
+
+  if (error) {
+    console.error("Error sending reset email:", error.message);
+    throw new Error("Failed to send reset email. Please try again later.");
+  }
+}

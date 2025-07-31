@@ -23,6 +23,7 @@ const Settings = lazy(() => import("./pages/Settings"));
 const Users = lazy(() => import("./pages/Users"));
 const Account = lazy(() => import("./pages/Account"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ export default function App() {
               <Route path="users" element={<Users />} />
               <Route path="account" element={<Account />} />
             </Route>
+            <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="login" element={<Login />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
