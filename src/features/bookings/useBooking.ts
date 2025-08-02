@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import type { Cabin } from "../cabins/useCabins";
 
-type Guest = {
+export type Guest = {
   id: number;
   created_at: string;
   fullName: string;

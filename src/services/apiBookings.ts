@@ -1,5 +1,6 @@
 import type { Booking } from "@/features/bookings/useBooking";
 import supabase from "./supabase";
+import { getToday } from "@/utils/helpers";
 
 type FilterMethod =
   | "eq"
@@ -111,6 +112,44 @@ export async function updateBooking(id: number, obj: Partial<Booking>) {
     console.log(error);
     throw new Error("Booking could not be updated");
   }
+
+  return data;
+}
+
+export async function getBookingsAfterDate(date: string) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("created_at, totalPrice, extrasPrice")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export async function getStaysAfterDate(date: string) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, guests(fullName)")
+    .gte("startDate", date)
+    .lte("startDate", getToday());
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export async function getStaysTodayActivity() {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, guests(fullName, nationality, countryFlag)")
+    .or(
+      `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,startDate.eq.${getToday()})`,
+    )
+    .order("created_at");
+
+  if (error) throw new Error(error.message);
 
   return data;
 }

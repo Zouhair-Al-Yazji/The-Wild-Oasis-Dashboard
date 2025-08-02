@@ -2,7 +2,7 @@ import { useUser } from "./users/useUser";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FormRow from "../../ui/FormRow";
-import AvatarImageUploader from "@/components/AvatarImageUploader";
+import AvatarImageUploader from "@/ui/AvatarImageUploader";
 import { useUpdateUser } from "./users/useUpdateUser";
 import { useForm } from "react-hook-form";
 import SpinnerMini from "@/ui/SpinnerMini";
