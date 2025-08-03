@@ -27,16 +27,16 @@ type StateProps = {
 };
 
 const cardColorMap: Record<ColorVariant, string> = {
-  blue: "bg-gradient-to-br from-blue-50 to-blue-50/30 dark:from-blue-900/30 dark:to-blue-900/10",
+  blue: "bg-gradient-to-br from-blue-100 to-blue-50/30 dark:from-blue-900/30 dark:to-blue-900/10",
   yellow:
-    "bg-gradient-to-br from-yellow-50 to-yellow-50/30 dark:from-yellow-900/30 dark:to-yellow-900/10",
+    "bg-gradient-to-br from-yellow-100 to-yellow-50/30 dark:from-yellow-900/30 dark:to-yellow-900/10",
   green:
-    "bg-gradient-to-br from-green-50 to-green-50/30 dark:from-green-900/30 dark:to-green-900/10",
+    "bg-gradient-to-br from-green-100 to-green-50/30 dark:from-green-900/30 dark:to-green-900/10",
   indigo:
-    "bg-gradient-to-br from-indigo-50 to-indigo-50/30 dark:from-indigo-900/30 dark:to-indigo-900/10",
-  red: "bg-gradient-to-br from-red-50 to-red-50/30 dark:from-red-900/30 dark:to-red-900/10",
+    "bg-gradient-to-br from-indigo-100 to-indigo-50/30 dark:from-indigo-900/30 dark:to-indigo-900/10",
+  red: "bg-gradient-to-br from-red-100 to-red-50/30 dark:from-red-900/30 dark:to-red-900/10",
   purple:
-    "bg-gradient-to-br from-purple-50 to-purple-50/30 dark:from-purple-900/30 dark:to-purple-900/10",
+    "bg-gradient-to-br from-purple-100 to-purple-50/30 dark:from-purple-900/30 dark:to-purple-900/10",
 };
 
 const iconBgMap: Record<ColorVariant, string> = {
