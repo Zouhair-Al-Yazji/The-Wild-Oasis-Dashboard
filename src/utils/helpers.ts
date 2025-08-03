@@ -23,3 +23,24 @@ export const getToday = function (options?: { end?: boolean }) {
 
   return today.toISOString();
 };
+
+export function calculateTrend(
+  current: number,
+  prev: number,
+): "up" | "down" | "neutral" {
+  if (prev === 0) return "neutral";
+  const percentageChange = ((current - prev) / prev) * 100;
+  return Math.abs(percentageChange) < 5
+    ? "neutral"
+    : percentageChange > 0
+      ? "up"
+      : "down";
+}
+
+export function calculatePercentageChange(
+  current: number,
+  previous: number,
+): string {
+  if (previous === 0) return current === 0 ? "0" : "100";
+  return (((current - previous) / previous) * 100).toFixed(1);
+}

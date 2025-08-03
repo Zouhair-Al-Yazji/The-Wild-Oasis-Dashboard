@@ -8,11 +8,16 @@ import { useCabins } from "../cabins/useCabins";
 import Spinner from "@/ui/Spinner";
 
 export default function DashboardLayout() {
-  const { bookings, isPending: isPendingBookings } = useRecentBookings();
+  const {
+    bookings,
+    isPending: isPendingBookings,
+    metrics: bookingMetrics,
+  } = useRecentBookings();
   const {
     confirmedStays,
     isPending: isPendingStays,
     numDays,
+    metrics: stayMetrics,
   } = useRecentStays();
   const { data: cabins, isPending: isPendingCabins } = useCabins();
 
@@ -26,6 +31,12 @@ export default function DashboardLayout() {
         confirmedStays={confirmedStays}
         numDays={numDays}
         cabinsCount={cabins?.length || 0}
+        metrics={{
+          bookings: bookingMetrics.bookings,
+          sales: bookingMetrics.sales,
+          checkIns: stayMetrics.checkIns,
+          occupancy: stayMetrics.occupancy,
+        }}
       />
       <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />

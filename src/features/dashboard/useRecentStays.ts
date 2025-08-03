@@ -1,21 +1,67 @@
 import { getStaysAfterDate } from "@/services/apiBookings";
+import { calculateTrend } from "@/utils/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { subDays } from "date-fns";
 import { useSearchParams } from "react-router-dom";
 
 export function useRecentStays() {
   const [searchParams] = useSearchParams();
-  const numDays = !searchParams ? 7 : Number(searchParams.get("last"));
-  const queryDays = subDays(new Date(), numDays).toISOString();
+  const numDays = searchParams.get("last")
+    ? Number(searchParams.get("last"))
+    : 7;
+  const prevNumDays = numDays; // Compare same duration periods
 
-  const { data: stays = [], isPending } = useQuery({
-    queryKey: [`stays, last-${numDays}`],
-    queryFn: () => getStaysAfterDate(queryDays),
+  const currentEndDate = new Date();
+  const currentStartDate = subDays(currentEndDate, numDays);
+
+  const previousEndDate = currentStartDate;
+  const previousStartDate = subDays(previousEndDate, prevNumDays);
+
+  const { data: currentStays = [], isPending } = useQuery({
+    queryKey: ["stays", `last-${numDays}`],
+    queryFn: () => getStaysAfterDate(currentStartDate.toISOString()),
   });
 
-  const confirmedStays = stays?.filter(
+  const { data: previousStays = [] } = useQuery({
+    queryKey: ["stays", `prev-${prevNumDays}`],
+    queryFn: () => getStaysAfterDate(previousStartDate.toISOString()),
+    enabled: !isPending,
+  });
+
+  const currentConfirmed = currentStays.filter(
+    (stay) => stay.status === "checked-in" || stay.status === "checked-out",
+  );
+  const previousConfirmed = previousStays.filter(
     (stay) => stay.status === "checked-in" || stay.status === "checked-out",
   );
 
-  return { stays, isPending, confirmedStays, numDays };
+  const currentNights = currentConfirmed.reduce(
+    (acc, stay) => acc + (stay.numNights || 0),
+    0,
+  );
+  const previousNights = previousConfirmed.reduce(
+    (acc, stay) => acc + (stay.numNights || 0),
+    0,
+  );
+
+  return {
+    confirmedStays: currentConfirmed,
+    isPending,
+    numDays,
+    metrics: {
+      checkIns: {
+        current: currentConfirmed.length,
+        previous: previousConfirmed.length,
+        trend: calculateTrend(
+          currentConfirmed.length,
+          previousConfirmed.length,
+        ),
+      },
+      occupancy: {
+        current: currentNights,
+        previous: previousNights,
+        trend: calculateTrend(currentNights, previousNights),
+      },
+    },
+  };
 }
