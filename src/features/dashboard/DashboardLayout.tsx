@@ -27,8 +27,6 @@ export default function DashboardLayout() {
   return (
     <div className="grid h-full grid-cols-4 gap-6">
       <Stats
-        bookings={bookings}
-        confirmedStays={confirmedStays}
         numDays={numDays}
         cabinsCount={cabins?.length || 0}
         metrics={{
@@ -39,7 +37,11 @@ export default function DashboardLayout() {
         }}
       />
       <TodayActivity />
-      <DurationChart confirmedStays={confirmedStays} />
+      <DurationChart
+        numDays={numDays}
+        confirmedStays={confirmedStays}
+        trend={stayMetrics.checkIns.trend}
+      />
       <SalesChart bookings={bookings} numDays={numDays} />
     </div>
   );

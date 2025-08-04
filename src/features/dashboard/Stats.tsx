@@ -13,8 +13,6 @@ export type ConfirmedStays = Omit<Booking, "guests"> & {
 };
 
 type StatsProps = {
-  bookings: { created_at: string; totalPrice: number; extrasPrice: number }[];
-  confirmedStays: ConfirmedStays[];
   cabinsCount: number;
   numDays: number;
   metrics: {
@@ -41,13 +39,7 @@ type StatsProps = {
   };
 };
 
-export default function Stats({
-  bookings,
-  cabinsCount,
-  numDays,
-  confirmedStays,
-  metrics,
-}: StatsProps) {
+export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
   const occupancyRate =
     numDays > 0 && cabinsCount > 0
       ? (metrics.occupancy.current / (numDays * cabinsCount)) * 100

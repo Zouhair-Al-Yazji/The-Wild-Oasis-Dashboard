@@ -9,7 +9,7 @@ export function useRecentStays() {
   const numDays = searchParams.get("last")
     ? Number(searchParams.get("last"))
     : 7;
-  const prevNumDays = numDays; // Compare same duration periods
+  const prevNumDays = numDays;
 
   const currentEndDate = new Date();
   const currentStartDate = subDays(currentEndDate, numDays);
