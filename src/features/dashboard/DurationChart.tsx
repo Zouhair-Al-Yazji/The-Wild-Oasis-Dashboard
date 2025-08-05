@@ -104,13 +104,13 @@ export default function DurationChart({
             </div>
           </CardContent>
           <CardFooter className="flex items-center justify-center gap-2 text-sm">
-            {trend === "up" && (
-              <TrendingUp className="h-4 w-4 text-green-500" />
-            )}
+            {trend === "up" && <TrendingUp className="text-chart-5 h-4 w-4" />}
             {trend === "down" && (
-              <TrendingDown className="h-4 w-4 text-red-500" />
+              <TrendingDown className="text-destructive h-4 w-4" />
             )}
-            {trend === "neutral" && <Minus className="h-4 w-4 text-gray-500" />}
+            {trend === "neutral" && (
+              <Minus className="text-muted-foreground h-4 w-4" />
+            )}
             <span>
               {trend === "up"
                 ? "Increasing"

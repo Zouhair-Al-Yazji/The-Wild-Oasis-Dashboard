@@ -1,5 +1,5 @@
 import { getStaysAfterDate } from "@/services/apiBookings";
-import { calculateTrend } from "@/utils/helpers";
+import { calculatePercentageChange, calculateTrend } from "@/utils/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { subDays } from "date-fns";
 import { useSearchParams } from "react-router-dom";
@@ -56,11 +56,16 @@ export function useRecentStays() {
           currentConfirmed.length,
           previousConfirmed.length,
         ),
+        change: calculatePercentageChange(
+          currentConfirmed.length,
+          previousConfirmed.length,
+        ),
       },
       occupancy: {
         current: currentNights,
         previous: previousNights,
         trend: calculateTrend(currentNights, previousNights),
+        change: calculatePercentageChange(currentNights, previousNights),
       },
     },
   };

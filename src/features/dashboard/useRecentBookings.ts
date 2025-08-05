@@ -1,5 +1,5 @@
 import { getBookingsAfterDate } from "@/services/apiBookings";
-import { calculateTrend } from "@/utils/helpers";
+import { calculatePercentageChange, calculateTrend } from "@/utils/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { subDays } from "date-fns";
 import { useSearchParams } from "react-router-dom";
@@ -28,13 +28,38 @@ export function useRecentBookings() {
     enabled: !isPending,
   });
 
-  const currentSales = currentBookings.reduce(
+  const currentTotalSales = currentBookings.reduce(
     (acc, cur) => acc + cur.totalPrice,
     0,
   );
-  const previousSales = previousBookings.reduce(
+  const currentExtrasSales = currentBookings.reduce(
+    (acc, cur) => acc + cur.extrasPrice,
+    0,
+  );
+
+  const previousTotalSales = previousBookings.reduce(
     (acc, cur) => acc + cur.totalPrice,
     0,
+  );
+  const previousExtrasSales = previousBookings.reduce(
+    (acc, cur) => acc + cur.extrasPrice,
+    0,
+  );
+
+  // Calculate total revenue (combined sales + extras)
+  const currentTotalRevenue = currentTotalSales + currentExtrasSales;
+  const previousTotalRevenue = previousTotalSales + previousExtrasSales;
+
+  // Calculate percentage change
+  const revenueChange = calculatePercentageChange(
+    currentTotalRevenue,
+    previousTotalRevenue,
+  );
+
+  // Calculate trend direction
+  const revenueTrend = calculateTrend(
+    currentTotalRevenue,
+    previousTotalRevenue,
   );
 
   return {
@@ -45,11 +70,36 @@ export function useRecentBookings() {
         current: currentBookings.length,
         previous: previousBookings.length,
         trend: calculateTrend(currentBookings.length, previousBookings.length),
+        change: calculatePercentageChange(
+          currentBookings.length,
+          previousBookings.length,
+        ),
       },
       sales: {
-        current: currentSales,
-        previous: previousSales,
-        trend: calculateTrend(currentSales, previousSales),
+        total: {
+          current: currentTotalSales,
+          previous: previousTotalSales,
+          trend: calculateTrend(currentTotalSales, previousTotalSales),
+          change: calculatePercentageChange(
+            currentTotalSales,
+            previousTotalSales,
+          ),
+        },
+        extras: {
+          current: currentExtrasSales,
+          previous: previousExtrasSales,
+          trend: calculateTrend(currentExtrasSales, previousExtrasSales),
+          change: calculatePercentageChange(
+            currentExtrasSales,
+            previousExtrasSales,
+          ),
+        },
+        combined: {
+          current: currentTotalRevenue,
+          previous: previousTotalRevenue,
+          trend: revenueTrend,
+          change: revenueChange,
+        },
       },
     },
   };

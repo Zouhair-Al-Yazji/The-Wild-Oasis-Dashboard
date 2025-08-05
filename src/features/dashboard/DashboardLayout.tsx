@@ -31,7 +31,7 @@ export default function DashboardLayout() {
         cabinsCount={cabins?.length || 0}
         metrics={{
           bookings: bookingMetrics.bookings,
-          sales: bookingMetrics.sales,
+          sales: bookingMetrics.sales.combined,
           checkIns: stayMetrics.checkIns,
           occupancy: stayMetrics.occupancy,
         }}
@@ -42,7 +42,11 @@ export default function DashboardLayout() {
         confirmedStays={confirmedStays}
         trend={stayMetrics.checkIns.trend}
       />
-      <SalesChart bookings={bookings} numDays={numDays} />
+      <SalesChart
+        bookings={bookings}
+        metric={bookingMetrics.sales.combined}
+        numDays={numDays}
+      />
     </div>
   );
 }

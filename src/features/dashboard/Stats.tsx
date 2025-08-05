@@ -1,4 +1,4 @@
-import { calculatePercentageChange, formatCurrency } from "@/utils/helpers";
+import { formatCurrency } from "@/utils/helpers";
 import type { Booking, Guest } from "../bookings/useBooking";
 import State from "./State";
 import {
@@ -20,21 +20,25 @@ type StatsProps = {
       current: number;
       previous: number;
       trend: "up" | "down" | "neutral";
+      change: string;
     };
     sales: {
       current: number;
       previous: number;
       trend: "up" | "down" | "neutral";
+      change: string;
     };
     checkIns: {
       current: number;
       previous: number;
       trend: "up" | "down" | "neutral";
+      change: string;
     };
     occupancy: {
       current: number;
       previous: number;
       trend: "up" | "down" | "neutral";
+      change: string;
     };
   };
 };
@@ -44,22 +48,6 @@ export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
     numDays > 0 && cabinsCount > 0
       ? (metrics.occupancy.current / (numDays * cabinsCount)) * 100
       : 0;
-  const bookingChange = calculatePercentageChange(
-    metrics.bookings.current,
-    metrics.bookings.previous,
-  );
-  const salesChange = calculatePercentageChange(
-    metrics.sales.current,
-    metrics.sales.previous,
-  );
-  const checkInChange = calculatePercentageChange(
-    metrics.checkIns.current,
-    metrics.checkIns.previous,
-  );
-  const occupancyChange = calculatePercentageChange(
-    metrics.occupancy.current,
-    metrics.occupancy.previous,
-  );
 
   return (
     <div className="col-span-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -69,7 +57,7 @@ export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
         icon={<HiOutlineBriefcase />}
         color="blue"
         trend={metrics.bookings.trend}
-        trendValue={`${bookingChange}%`}
+        trendValue={`${metrics.bookings.change}%`}
         trendPeriod={`last ${numDays} days`}
         footerText={`vs previous ${numDays} days`}
       />
@@ -79,7 +67,7 @@ export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
         icon={<HiOutlineBanknotes />}
         color="green"
         trend={metrics.sales.trend}
-        trendValue={`${salesChange}%`}
+        trendValue={`${metrics.sales.change}%`}
         trendPeriod={`last ${numDays} days`}
         footerText={`vs previous ${numDays} days`}
       />
@@ -89,7 +77,7 @@ export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
         icon={<HiOutlineCalendarDays />}
         color="indigo"
         trend={metrics.checkIns.trend}
-        trendValue={`${checkInChange}%`}
+        trendValue={`${metrics.checkIns.change}%`}
         trendPeriod={`last ${numDays} days`}
         footerText={`vs previous ${numDays} days`}
       />
@@ -99,7 +87,7 @@ export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
         icon={<HiOutlineChartBar />}
         color="yellow"
         trend={metrics.occupancy.trend}
-        trendValue={`${occupancyChange}%`}
+        trendValue={`${metrics.occupancy.change}%`}
         trendPeriod={`last ${numDays} days`}
         footerText={`${metrics.occupancy.current} night${
           metrics.occupancy.current !== 1 ? "s" : ""
