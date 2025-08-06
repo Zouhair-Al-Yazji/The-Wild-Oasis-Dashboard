@@ -25,7 +25,7 @@ export default function DashboardLayout() {
     return <Spinner />;
 
   return (
-    <div className="grid h-full grid-cols-4 gap-6">
+    <div className="h- grid h-full grid-cols-4 grid-rows-[auto_516px_auto] gap-6">
       <Stats
         numDays={numDays}
         cabinsCount={cabins?.length || 0}
