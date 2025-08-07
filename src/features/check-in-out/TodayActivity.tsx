@@ -10,9 +10,7 @@ import Spinner from "@/ui/Spinner";
 import TodayList from "./TodayList";
 
 export default function TodayActivity() {
-  // Activity means that there is a check in or a check out today
   const { activities, isPending } = useTodayActivity();
-  console.log(activities);
 
   return (
     <div className="col-span-4 lg:col-span-2">
