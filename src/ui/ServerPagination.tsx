@@ -39,15 +39,56 @@ export function ServerPagination({ count }: ServerPaginationProps) {
     setSearchParams(params);
   };
 
-  return (
-    <div className="flex items-center justify-between px-2">
-      <div className="text-muted-foreground flex-1 text-sm">
-        Showing {(currentPage - 1) * pageSize + 1}-
-        {Math.min(currentPage * pageSize, count)} of {count} rows
+  // Mobile pagination UI
+  const MobilePagination = () => (
+    <div className="flex w-full items-center justify-between sm:hidden">
+      <Button
+        variant="outline"
+        size="sm"
+        className="h-7 w-7 p-0"
+        onClick={() => navigateToPage(currentPage - 1)}
+        disabled={currentPage <= 1}
+        aria-label="Previous page"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
+
+      <div className="text-sm font-medium">
+        Page <span className="font-semibold">{currentPage}</span> /{" "}
+        <span className="font-semibold">{pageCount}</span>
       </div>
-      <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+
+      <Button
+        variant="outline"
+        size="sm"
+        className="h-7 w-7 p-0"
+        onClick={() => navigateToPage(currentPage + 1)}
+        disabled={currentPage >= pageCount}
+        aria-label="Next page"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </Button>
+    </div>
+  );
+
+  return (
+    <div className="flex w-full flex-col gap-3 px-2 py-1 sm:flex-row sm:items-center sm:justify-between">
+      <div className="text-muted-foreground text-center text-sm sm:text-left">
+        Showing{" "}
+        <span className="text-foreground font-medium">
+          {(currentPage - 1) * pageSize + 1}-
+          {Math.min(currentPage * pageSize, count)}
+        </span>{" "}
+        of <span className="text-foreground font-medium">{count}</span> rows
+      </div>
+
+      <MobilePagination />
+
+      <div className="hidden items-center gap-4 sm:flex sm:gap-3 md:gap-4">
+        <div className="flex items-center gap-2">
+          <p className="hidden text-sm font-medium whitespace-nowrap md:block">
+            Rows per page
+          </p>
           <Select value={`${pageSize}`} onValueChange={handlePageSizeChange}>
             <SelectTrigger className="h-8 w-[70px]">
               <SelectValue placeholder={pageSize} />
@@ -61,44 +102,51 @@ export function ServerPagination({ count }: ServerPaginationProps) {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {currentPage} of {pageCount}
+
+        <div className="flex min-w-[100px] items-center justify-center text-sm font-medium whitespace-nowrap">
+          Page <span className="mx-1 font-semibold">{currentPage}</span> of{" "}
+          <span className="ml-1 font-semibold">{pageCount}</span>
         </div>
-        <div className="flex items-center space-x-2">
+
+        <div className="flex items-center gap-1">
           <Button
             variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
+            size="icon"
+            className="h-8 w-8"
             onClick={() => navigateToPage(1)}
             disabled={currentPage <= 1}
+            aria-label="Go to first page"
           >
-            <span className="sr-only">Go to first page</span>
             <ChevronsLeft className="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
-            className="h-8 w-8 p-0"
+            size="icon"
+            className="h-8 w-8"
             onClick={() => navigateToPage(currentPage - 1)}
             disabled={currentPage <= 1}
+            aria-label="Go to previous page"
           >
-            <span className="sr-only">Go to previous page</span>
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
-            className="h-8 w-8 p-0"
+            size="icon"
+            className="h-8 w-8"
             onClick={() => navigateToPage(currentPage + 1)}
             disabled={currentPage >= pageCount}
+            aria-label="Go to next page"
           >
-            <span className="sr-only">Go to next page</span>
             <ChevronRight className="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
+            size="icon"
+            className="h-8 w-8"
             onClick={() => navigateToPage(pageCount)}
             disabled={currentPage >= pageCount}
+            aria-label="Go to last page"
           >
-            <span className="sr-only">Go to last page</span>
             <ChevronsRight className="h-4 w-4" />
           </Button>
         </div>

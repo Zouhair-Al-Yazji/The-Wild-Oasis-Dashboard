@@ -101,6 +101,7 @@ export function LoginForm({
                   <Button
                     variant={"ghost"}
                     type="button"
+                    disabled={isPending}
                     className="text-muted-foreground hover:text-primary absolute top-1/2 right-2 -translate-y-1/2 transform hover:bg-transparent dark:hover:bg-transparent"
                     onClick={() => setShowPassword((show) => !show)}
                     title={showPassword ? "hide password" : "show password"}

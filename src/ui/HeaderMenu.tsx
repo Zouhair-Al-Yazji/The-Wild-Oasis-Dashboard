@@ -18,6 +18,7 @@ export default function HeaderMenu() {
   const { user } = useUser();
   const { logout, isPending } = useLogout();
   const navigate = useNavigate();
+
   const userFallback = user?.user_metadata.fullName
     ?.split(" ")
     .map((n: string) => n[0].toUpperCase())
@@ -40,7 +41,8 @@ export default function HeaderMenu() {
               {userFallback}
             </AvatarFallback>
           </Avatar>
-          <div className="grid flex-1 text-left text-sm leading-tight">
+
+          <div className="hidden flex-1 flex-col truncate text-left text-sm leading-tight sm:grid">
             <span className="text-foreground truncate font-medium">
               {user?.user_metadata.fullName}
             </span>
@@ -48,12 +50,13 @@ export default function HeaderMenu() {
               {user?.email}
             </span>
           </div>
-          <ChevronsUpDown className="ml-auto size-4" />
+
+          <ChevronsUpDown className="ml-auto h-4 w-4" />
         </div>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="bg-background w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+        className="bg-background mr-2 w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg sm:mr-0"
         align="start"
         sideOffset={4}
       >
@@ -64,7 +67,7 @@ export default function HeaderMenu() {
                 src={user?.user_metadata.avatar}
                 alt={user?.user_metadata.fullName}
                 loading="lazy"
-                className="border-border h-full w-full rounded-full border object-center"
+                className="border-border h-full w-full rounded-lg border object-center"
               />
               <AvatarFallback className="rounded-lg">
                 {userFallback}

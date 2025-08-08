@@ -84,7 +84,7 @@ export default function CreateCabinForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-h-[calc(90vh-180px)] divide-y overflow-y-auto px-1"
+      className="max-h-[calc(90vh-180px)] divide-y overflow-y-auto px-1 sm:px-4"
     >
       <div className="space-y-6 py-4">
         <FormRow
@@ -224,7 +224,7 @@ export default function CreateCabinForm({
         </FormRow>
       </div>
 
-      <DialogFooter className="bg-background sticky bottom-0 border-t pt-6">
+      <DialogFooter className="bg-background sticky bottom-0 flex justify-end gap-2 border-t px-1 pt-6 sm:px-4">
         <Button
           variant="outline"
           type="button"

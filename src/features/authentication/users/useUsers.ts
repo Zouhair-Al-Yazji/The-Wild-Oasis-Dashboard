@@ -16,8 +16,6 @@ export function useUsers() {
     queryFn: getUsers,
   });
 
-  console.log(data);
-
   return {
     data,
     isError,

@@ -22,9 +22,9 @@ export default function FormRow({
   return (
     <div
       className={cn(
-        "grid items-center gap-6",
-        !model && "grid-cols-[15rem_1fr_1.2fr]",
-        model && "grid-cols-[13rem_1fr_1fr_1fr]",
+        "grid grid-cols-1 items-center gap-2 md:gap-6",
+        !model && "md:grid-cols-[15rem_1fr_1.2fr]",
+        model && "md:grid-cols-[13rem_1fr_1fr_1fr]",
         className,
       )}
     >

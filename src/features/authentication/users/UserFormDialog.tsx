@@ -16,7 +16,7 @@ export default function UserFormDialog({
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] !max-w-4xl overflow-hidden">
+      <DialogContent className="mx-auto max-h-[90vh] max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg p-4 sm:max-w-[calc(100vw-3rem)] md:sm:max-w-[calc(100vw-4rem)] lg:max-w-4xl">
         <DialogHeader className="px-1">
           <DialogTitle>Create a new user</DialogTitle>
           <DialogDescription>
