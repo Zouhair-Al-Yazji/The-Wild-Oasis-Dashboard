@@ -1,7 +1,7 @@
 import FilterInput from "@/ui/FilterInput";
 import FilterDropdown from "@/ui/FilterDropdown";
 import type { Table } from "@tanstack/react-table";
-import type { SimplifiedUser } from "./useUsers";
+import type { ProfileUser } from "./useUsers";
 
 const filterOptions = [
   { value: "all", label: "All" },
@@ -12,7 +12,7 @@ const filterOptions = [
 export default function UsersTableOperations({
   table,
 }: {
-  table: Table<SimplifiedUser>;
+  table: Table<ProfileUser>;
 }) {
   return (
     <div className="flex items-center gap-4">
