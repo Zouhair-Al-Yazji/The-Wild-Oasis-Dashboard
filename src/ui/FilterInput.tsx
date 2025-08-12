@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Table } from "@tanstack/react-table";
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function FilterInput<TData>({
@@ -12,33 +12,34 @@ export default function FilterInput<TData>({
   filterPlaceholder: string;
   table?: Table<TData>;
 }) {
-  const column = table?.getColumn(filterField);
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentSearchValue = searchParams.get(filterField) || "";
+  const [value, setValue] = useState(searchParams.get(filterField) || "");
 
-  useEffect(function () {
-    if (currentSearchValue) {
-      column?.setFilterValue(currentSearchValue);
-    }
-  }, []);
+  const column = table?.getColumn(filterField);
+
+  useEffect(() => {
+    column?.setFilterValue(value);
+  }, [column, value]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
+    const newValue = e.target.value;
+    setValue(newValue);
 
-    column?.setFilterValue(value);
-
-    if (value) {
-      searchParams.set(filterField, value);
+    const newParams = new URLSearchParams(searchParams);
+    if (newValue) {
+      newParams.set(filterField, newValue);
+      // Reset to first page when filtering
+      newParams.set("page", "0");
     } else {
-      searchParams.delete(filterField);
+      newParams.delete(filterField);
     }
-    setSearchParams(searchParams);
+    setSearchParams(newParams);
   }
 
   return (
     <Input
       placeholder={filterPlaceholder}
-      value={(column?.getFilterValue() as string) ?? ""}
+      value={value}
       onChange={handleChange}
       className="max-w-sm bg-white"
     />

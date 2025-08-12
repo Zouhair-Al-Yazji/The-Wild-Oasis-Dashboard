@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useCallback } from "react";
 
 type ClientPaginationProps<TData> = {
   table: Table<TData>;
@@ -29,13 +30,36 @@ export function ClientPagination<TData>({
   const startIndex = totalRows === 0 ? 0 : pageIndex * pageSize + 1;
   const endIndex = Math.min((pageIndex + 1) * pageSize, totalRows);
 
+  const handlePageSizeChange = useCallback(
+    (value: string) => {
+      table.setPageSize(Number(value));
+    },
+    [table],
+  );
+
+  const handleFirstPage = useCallback(() => {
+    table.setPageIndex(0);
+  }, [table]);
+
+  const handlePreviousPage = useCallback(() => {
+    table.previousPage();
+  }, [table]);
+
+  const handleNextPage = useCallback(() => {
+    table.nextPage();
+  }, [table]);
+
+  const handleLastPage = useCallback(() => {
+    table.setPageIndex(pageCount - 1);
+  }, [table, pageCount]);
+
   const MobilePagination = () => (
     <div className="flex w-full items-center justify-between sm:hidden">
       <Button
         variant="outline"
         size="sm"
         className="h-7 w-7 p-0"
-        onClick={() => table.previousPage()}
+        onClick={handlePreviousPage}
         disabled={!table.getCanPreviousPage()}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -53,7 +77,7 @@ export function ClientPagination<TData>({
         variant="outline"
         size="sm"
         className="h-7 w-7 p-0"
-        onClick={() => table.nextPage()}
+        onClick={handleNextPage}
         disabled={!table.getCanNextPage()}
       >
         <ChevronRight className="h-4 w-4" />
@@ -76,10 +100,7 @@ export function ClientPagination<TData>({
       <div className="hidden items-center gap-4 sm:flex sm:gap-3 md:gap-4">
         <div className="flex items-center gap-2">
           <p className="hidden text-sm font-medium md:block">Rows per page</p>
-          <Select
-            value={`${pageSize}`}
-            onValueChange={(value) => table.setPageSize(Number(value))}
-          >
+          <Select value={`${pageSize}`} onValueChange={handlePageSizeChange}>
             <SelectTrigger className="h-8 w-[70px]">
               <SelectValue placeholder={pageSize} />
             </SelectTrigger>
@@ -103,7 +124,7 @@ export function ClientPagination<TData>({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => table.setPageIndex(0)}
+            onClick={handleFirstPage}
             disabled={!table.getCanPreviousPage()}
           >
             <ChevronsLeft className="h-4 w-4" />
@@ -112,7 +133,7 @@ export function ClientPagination<TData>({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => table.previousPage()}
+            onClick={handlePreviousPage}
             disabled={!table.getCanPreviousPage()}
           >
             <ChevronLeft className="h-4 w-4" />
@@ -121,7 +142,7 @@ export function ClientPagination<TData>({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => table.nextPage()}
+            onClick={handleNextPage}
             disabled={!table.getCanNextPage()}
           >
             <ChevronRight className="h-4 w-4" />
@@ -130,7 +151,7 @@ export function ClientPagination<TData>({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => table.setPageIndex(pageCount - 1)}
+            onClick={handleLastPage}
             disabled={!table.getCanNextPage()}
           >
             <ChevronsRight className="h-4 w-4" />

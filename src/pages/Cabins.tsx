@@ -11,19 +11,26 @@ export default function CabinsPage() {
 
   return (
     <>
-      <h2 className="text-foreground text-2xl font-semibold">All cabins</h2>
+      <div className="flex items-center justify-between gap-4">
+        <h2 className="text-foreground text-xl font-semibold sm:text-2xl">
+          All cabins
+        </h2>
+
+        <Button
+          onClick={() => setIsCreateCabinDialogOpen(true)}
+          className=""
+          size={"sm"}
+        >
+          Add new Cabin
+        </Button>
+      </div>
+
       <CabinsDataTable
         columns={columns}
         data={cabins}
         isLoading={isPending}
         isError={isError}
       />
-
-      <div>
-        <Button onClick={() => setIsCreateCabinDialogOpen(true)}>
-          Add new Cabin
-        </Button>
-      </div>
 
       <CabinFormDialog
         open={isCreateCabinDialogOpen}

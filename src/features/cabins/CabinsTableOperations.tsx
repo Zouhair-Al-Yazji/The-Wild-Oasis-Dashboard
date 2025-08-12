@@ -9,21 +9,23 @@ export default function CabinsTableOperations({
   table: Table<Cabin>;
 }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
       <FilterInput
         filterField="name"
         filterPlaceholder="Filter cabins by name..."
         table={table}
       />
-      <FilterDropdown
-        filterField="discount"
-        table={table}
-        options={[
-          { label: "All", value: "all" },
-          { label: "With Discount", value: "with" },
-          { label: "Without Discount", value: "without" },
-        ]}
-      />
+      <div>
+        <FilterDropdown
+          filterField="discount"
+          table={table}
+          options={[
+            { label: "All", value: "all" },
+            { label: "With Discount", value: "with" },
+            { label: "Without Discount", value: "without" },
+          ]}
+        />
+      </div>
     </div>
   );
 }

@@ -88,7 +88,7 @@ export default function DurationChart({
 
   if (chartData.length === 0) {
     return (
-      <div className="col-span-4 lg:col-span-2">
+      <div className="col-span-4 md:col-span-2">
         <Card className="flex h-full flex-col p-6 text-center">
           <CardHeader>
             <CardTitle>Stay Duration Summary</CardTitle>
@@ -126,7 +126,7 @@ export default function DurationChart({
   }
 
   return (
-    <div className="col-span-4 lg:col-span-2">
+    <div className="col-span-4 md:col-span-2">
       <Card className="flex h-full flex-col">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg">Stay Duration Summary</CardTitle>

@@ -15,17 +15,20 @@ export default function UsersTableOperations({
   table: Table<ProfileUser>;
 }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
       <FilterInput
         filterField="fullName"
         filterPlaceholder="Filter users by username..."
         table={table}
       />
-      <FilterDropdown
-        filterField="gender"
-        table={table}
-        options={filterOptions}
-      />
+
+      <div>
+        <FilterDropdown
+          filterField="gender"
+          table={table}
+          options={filterOptions}
+        />
+      </div>
     </div>
   );
 }

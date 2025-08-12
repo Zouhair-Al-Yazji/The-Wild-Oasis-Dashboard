@@ -50,7 +50,7 @@ export default function Stats({ cabinsCount, numDays, metrics }: StatsProps) {
       : 0;
 
   return (
-    <div className="col-span-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <div className="col-span-4 grid grid-cols-1 gap-4 md:grid-cols-2">
       <State
         title="Bookings"
         value={metrics.bookings.current.toString()}

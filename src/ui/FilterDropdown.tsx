@@ -26,18 +26,17 @@ export default function FilterDropdown<TData>({
   const currentFilterValue =
     searchParams.get(filterField) || options.at(0)?.value || "";
 
-  useEffect(
-    function () {
-      column?.setFilterValue(currentFilterValue);
-    },
-    [column, currentFilterValue],
-  );
+  useEffect(() => {
+    column?.setFilterValue(currentFilterValue);
+  }, [column, currentFilterValue]);
 
   if (!options.length) return null;
 
   function handleClick(value: string) {
     const newParams = new URLSearchParams(searchParams);
     newParams.set(filterField, value);
+    // Reset to first page when filtering
+    newParams.set("page", "0");
     setSearchParams(newParams);
     column?.setFilterValue(value);
   }

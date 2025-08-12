@@ -35,55 +35,54 @@ export default function BookingDetail() {
   }
 
   if (isPending) return <Spinner />;
-
   if (isError) return <Error message={error.message} />;
 
   return (
-    <>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <h3 className="text-foreground text-2xl font-semibold">
+    <div className="flex flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-3">
+          <h3 className="text-foreground] text-2xl font-semibold">
             Booking #{bookingId}
           </h3>
           <span
-            className={`${STATUS[status as StatusType]} rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase`}
+            className={`${STATUS[status as StatusType]} rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase`}
           >
             {status?.replace("-", "")}
           </span>
         </div>
 
         <Button
-          variant={"ghost"}
-          className="text-foreground"
+          variant="outline"
+          className="text-foreground flex items-center gap-2"
           onClick={moveBack}
         >
-          <ArrowLeft />
+          <ArrowLeft size={18} />
           Back
         </Button>
       </div>
 
       <BookingDataBox booking={booking} />
 
-      <div className="flex justify-end gap-2">
+      <div className="flex flex-wrap justify-end gap-3">
         {status === "unconfirmed" && (
           <Button onClick={() => navigate(`/checkin/${bookingId}`)}>
-            <HiArrowDownOnSquare />
+            <HiArrowDownOnSquare className="mr-1" />
             Check in
           </Button>
         )}
         {status === "checked-in" && (
           <Button onClick={() => checkout(Number(bookingId))}>
-            <HiArrowUpOnSquare />
+            <HiArrowUpOnSquare className="mr-1" />
             Check out
           </Button>
         )}
         <Button
-          variant={"destructive"}
+          variant="destructive"
           onClick={() => setIsDeleteBookingDialogOpen(true)}
         >
           Delete Booking
         </Button>
-        <Button variant={"outline"} onClick={moveBack}>
+        <Button variant="outline" onClick={moveBack}>
           Back
         </Button>
       </div>
@@ -95,6 +94,6 @@ export default function BookingDetail() {
         onConfirm={handleDelete}
         resourceName="booking"
       />
-    </>
+    </div>
   );
 }

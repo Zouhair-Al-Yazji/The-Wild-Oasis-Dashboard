@@ -70,19 +70,25 @@ export default function CheckinBooking() {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <h3 className="text-foreground text-2xl font-semibold">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h3 className="text-foreground text-xl font-semibold sm:text-2xl">
           Check in booking #{bookingId}
         </h3>
-        <Button variant={"ghost"} onClick={moveBack}>
-          <ArrowLeft /> Back
+        <Button
+          variant={"outline"}
+          onClick={moveBack}
+          className="w-full sm:w-auto"
+        >
+          <ArrowLeft className="mr-2" /> Back
         </Button>
       </div>
 
+      {/* Booking info */}
       <BookingDataBox booking={booking} />
 
+      {/* Optional breakfast */}
       {!hasBreakfast && (
-        <div className="bg-sidebar flex items-center gap-3 rounded-sm border px-10 py-6">
+        <div className="bg-sidebar flex flex-col gap-3 rounded-sm border px-4 py-4 sm:flex-row sm:items-center sm:px-10 sm:py-6">
           <Checkbox
             checked={addBreakfast}
             onCheckedChange={() => {
@@ -91,13 +97,14 @@ export default function CheckinBooking() {
             }}
             id="addBreakfast"
           />
-          <Label htmlFor="addBreakfast">
+          <Label htmlFor="addBreakfast" className="text-sm sm:text-base">
             Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
           </Label>
         </div>
       )}
 
-      <div className="bg-sidebar flex items-center gap-3 rounded-md border px-10 py-6">
+      {/* Payment confirmation */}
+      <div className="bg-sidebar flex flex-col gap-3 rounded-md border px-4 py-4 sm:flex-row sm:items-center sm:px-10 sm:py-6">
         <Checkbox
           checked={confirmPaid}
           onCheckedChange={() => {
@@ -106,7 +113,7 @@ export default function CheckinBooking() {
           disabled={confirmPaid}
           id="confirmPaid"
         />
-        <Label htmlFor="confirmPaid">
+        <Label htmlFor="confirmPaid" className="text-sm sm:text-base">
           I confirm that{" "}
           <span className="font-semibold">{guests?.fullName}</span> has paid the
           total amount of{" "}
@@ -116,13 +123,22 @@ export default function CheckinBooking() {
         </Label>
       </div>
 
-      <div className="flex justify-end gap-2">
-        <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
-          {isCheckingIn && <SpinnerMini label={``} />}
-          Check in booking #{bookingId}
-        </Button>
-        <Button variant={"outline"} onClick={moveBack}>
+      {/* Action buttons */}
+      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end sm:gap-2">
+        <Button
+          variant={"outline"}
+          onClick={moveBack}
+          className="w-full sm:w-auto"
+        >
           Back
+        </Button>
+        <Button
+          onClick={handleCheckin}
+          disabled={!confirmPaid || isCheckingIn}
+          className="w-full sm:w-auto"
+        >
+          {isCheckingIn && <SpinnerMini label="" />}
+          Check in booking #{bookingId}
         </Button>
       </div>
     </>

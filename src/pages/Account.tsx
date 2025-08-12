@@ -4,23 +4,23 @@ import UpdateUserDataForm from "@/features/authentication/UpdateUserDataForm";
 export default function Account() {
   return (
     <>
-      <h2 className="text-foreground text-2xl font-semibold">
+      <h2 className="text-foreground text-xl font-semibold sm:text-2xl">
         Update your account
       </h2>
 
-      <div className="flex flex-col gap-4">
+      <section className="flex flex-col gap-4">
         <h3 className="text-foreground text-base font-medium">
           Update user data
         </h3>
         <UpdateUserDataForm />
-      </div>
+      </section>
 
-      <div className="flex flex-col gap-4">
+      <section className="flex flex-col gap-4">
         <h3 className="text-foreground text-base font-medium">
           Update password
         </h3>
         <UpdatePasswordForm />
-      </div>
+      </section>
     </>
   );
 }

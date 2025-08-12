@@ -9,7 +9,7 @@ import {
   SortingState,
   ColumnFiltersState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Cabin } from "@/features/cabins/useCabins";
 import {
   Table,
@@ -39,9 +39,9 @@ export function CabinsDataTable({
   isLoading = false,
   isError = false,
 }: CabinsDataTableProps) {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // Initialize sorting from URL if valid params exist
+  // Initialize sorting from URL
   const initialSorting: SortingState = [];
   const urlSort = searchParams.get("sortBy");
   const urlSortDirection = searchParams.get("direction");
@@ -53,16 +53,65 @@ export function CabinsDataTable({
     });
   }
 
-  // Initialize pagination from URL
-  const paramPage = Number(searchParams.get("page"));
-  const paramPageSize = Number(searchParams.get("pageSize"));
+  // Initialize filters from URL
+  const initialFilters: ColumnFiltersState = [];
+  const nameFilter = searchParams.get("name");
+  const discountFilter = searchParams.get("discount");
+
+  if (nameFilter) {
+    initialFilters.push({ id: "name", value: nameFilter });
+  }
+  if (discountFilter && discountFilter !== "all") {
+    initialFilters.push({ id: "discount", value: discountFilter });
+  }
 
   const [sorting, setSorting] = useState<SortingState>(initialSorting);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] =
+    useState<ColumnFiltersState>(initialFilters);
   const [pagination, setPagination] = useState({
-    pageIndex: paramPage ? paramPage - 1 : 0,
-    pageSize: paramPageSize ? paramPageSize : 5,
+    pageIndex: Number(searchParams.get("page")) || 0,
+    pageSize: Number(searchParams.get("pageSize")) || 5,
   });
+
+  // Sync URL with table state
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    // Sorting
+    if (sorting.length > 0) {
+      params.set("sortBy", sorting[0].id);
+      params.set("direction", sorting[0].desc ? "desc" : "asc");
+    } else {
+      params.delete("sortBy");
+      params.delete("direction");
+    }
+
+    // Filters
+    columnFilters.forEach((filter) => {
+      if (filter.id === "name" && filter.value) {
+        params.set("name", filter.value as string);
+      } else if (filter.id === "discount" && filter.value !== "all") {
+        params.set("discount", filter.value as string);
+      } else {
+        params.delete(filter.id);
+      }
+    });
+
+    // Pagination
+    if (pagination.pageIndex > 0) {
+      params.set("page", pagination.pageIndex.toString());
+    } else {
+      params.delete("page");
+    }
+
+    if (pagination.pageSize !== 5) {
+      params.set("pageSize", pagination.pageSize.toString());
+    } else {
+      params.delete("pageSize");
+    }
+
+    setSearchParams(params, { replace: true });
+  }, [sorting, columnFilters, pagination, setSearchParams]);
 
   const table = useReactTable<Cabin>({
     data,

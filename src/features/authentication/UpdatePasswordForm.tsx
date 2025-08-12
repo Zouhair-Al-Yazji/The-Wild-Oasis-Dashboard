@@ -43,6 +43,7 @@ export default function UpdatePasswordForm() {
         <Input
           type="password"
           disabled={isUpdating}
+          placeholder="password"
           {...register("password", {
             required: "This field is required",
             minLength: {
@@ -65,6 +66,7 @@ export default function UpdatePasswordForm() {
       >
         <Input
           type="password"
+          placeholder="confirm password"
           disabled={isUpdating}
           {...register("passwordConfirm", {
             required: "This field is required",
@@ -74,7 +76,7 @@ export default function UpdatePasswordForm() {
         />
       </FormRow>
 
-      <div className="flex justify-end gap-3 pt-3">
+      <div className="flex flex-col-reverse gap-3 pt-3 sm:flex-row sm:justify-end">
         <Button variant="secondary" type="reset" disabled={isUpdating}>
           Cancel
         </Button>

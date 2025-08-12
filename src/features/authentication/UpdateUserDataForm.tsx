@@ -34,7 +34,7 @@ export default function UpdateUserDataForm() {
 
   return (
     <form
-      className="bg-sidebar border-border divide-y rounded-md border px-10 py-6"
+      className="bg-sidebar border-border divide-y rounded-md border px-6 py-4 shadow-sm sm:px-10 sm:py-6"
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormRow label="Email address" htmlFor="email" className="py-3">
@@ -67,8 +67,13 @@ export default function UpdateUserDataForm() {
         />
       </FormRow>
 
-      <div className="flex justify-end gap-3 pt-3">
-        <Button variant="secondary" type="reset" disabled={isUpdating}>
+      <div className="flex flex-col-reverse gap-3 pt-3 sm:flex-row sm:justify-end">
+        <Button
+          variant="secondary"
+          type="reset"
+          className="w-full sm:w-auto"
+          disabled={isUpdating}
+        >
           Cancel
         </Button>
         <Button type="submit">

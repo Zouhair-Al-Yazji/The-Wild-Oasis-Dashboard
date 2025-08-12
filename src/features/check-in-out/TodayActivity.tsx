@@ -13,7 +13,7 @@ export default function TodayActivity() {
   const { activities, isPending } = useTodayActivity();
 
   return (
-    <div className="col-span-4 lg:col-span-2">
+    <div className="col-span-4 md:col-span-2">
       <Card className="flex h-full flex-col gap-6">
         <CardHeader>
           <CardTitle>Today's Activities</CardTitle>

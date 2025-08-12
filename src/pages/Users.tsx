@@ -11,18 +11,22 @@ export default function Users() {
 
   return (
     <>
-      <h2 className="text-foreground text-2xl font-semibold">All users</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-foreground text-xl font-semibold sm:text-2xl">
+          All users
+        </h2>
+
+        <Button size={"sm"} onClick={() => setIsCreateUserDialogOpen(true)}>
+          Add new user
+        </Button>
+      </div>
+
       <UsersDataTable
         columns={UserColumns}
         data={data}
         isLoading={isPending}
         isError={isError}
       />
-      <div>
-        <Button onClick={() => setIsCreateUserDialogOpen(true)}>
-          Add new user
-        </Button>
-      </div>
 
       <UserFormDialog
         open={isCreateUserDialogOpen}

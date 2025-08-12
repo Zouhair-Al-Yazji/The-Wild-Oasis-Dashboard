@@ -1,5 +1,19 @@
-export default function Flag({ src, alt }: { src: string; alt: string }) {
+import { cn } from "@/lib/utils";
+
+export default function Flag({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
   return (
-    <img src={src} alt={alt} className="block max-w-5 rounded-xs border" />
+    <img
+      src={src}
+      alt={alt}
+      className={cn("border-border block h-5 w-5 rounded-xs border", className)}
+    />
   );
 }
