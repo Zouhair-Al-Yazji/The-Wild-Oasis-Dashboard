@@ -6,9 +6,8 @@ import { useEffect } from "react";
 
 export default function Bookings() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data, isPending, isError, count } = useBookings();
+  const { data, isPending, isError } = useBookings();
 
-  // Set default pagination if not present
   useEffect(() => {
     if (!searchParams.get("page")) {
       searchParams.set("page", "1");
@@ -29,7 +28,6 @@ export default function Bookings() {
         data={data}
         isLoading={isPending}
         isError={isError}
-        count={count ?? 0}
       />
     </>
   );
