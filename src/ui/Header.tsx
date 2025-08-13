@@ -1,4 +1,9 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import DarkModeToggle from "./DarkModeToggle";
 import HeaderMenu from "./HeaderMenu";
 import { Button } from "@/components/ui/button";
@@ -16,6 +21,7 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
+            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <Sidebar />
           </SheetContent>
         </Sheet>
