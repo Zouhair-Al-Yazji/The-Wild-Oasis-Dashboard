@@ -22,7 +22,9 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, reset, handleSubmit, formState } = useForm<LoginFormData>();
+  const { register, reset, handleSubmit, formState } = useForm<LoginFormData>({
+    defaultValues: { email: "zouhairelyazji@gmail.com", password: "12345678" },
+  });
   const { errors } = formState;
   const { login, isPending } = useLogin();
   const { isDarkMode } = useDarkMode();
