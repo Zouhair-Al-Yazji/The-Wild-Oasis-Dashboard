@@ -17,6 +17,7 @@
 </p>
 
 ## 📑 Table of Contents
+
 - [📖 About the Project](#-about-the-project)
 - [✨ Features](#-features)
 - [🛠 Tech Stack](#-tech-stack)
@@ -38,6 +39,7 @@ The system ensures that hotel staff can efficiently perform daily tasks with a c
 🔗 **Live Demo:** [the-wild-oasis-ts-phi.vercel.app](https://the-wild-oasis-ts-phi.vercel.app)
 
 ## ✨ Features
+
 - 🔒 **Authentication** — Secure login for hotel employees; accounts created only inside the app.
 - 🧑‍💼 **User Management** — Change avatar, name, and password.
 - 🛏 **Cabins Management** — View, add, edit, delete cabins with photos, price, capacity, and discounts.
@@ -47,6 +49,7 @@ The system ensures that hotel staff can efficiently perform daily tasks with a c
 - 🌙 **Dark Mode** — Modern UI with theme switching.
 
 ## 🛠 Tech Stack
+
 - **Frontend:** React, React Router, Tailwind CSS, ShadCN
 - **State Management:** TanStack Query, React Context API
 - **Forms:** React Hook Form
@@ -58,11 +61,13 @@ The system ensures that hotel staff can efficiently perform daily tasks with a c
 ## 💻 Getting Started
 
 ### Requirements
+
 - **Node.js** ≥ 18
 - **pnpm** package manager
 - Supabase project for backend
 
 ### Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/YOUR_GITHUB_USERNAME/The-Wild-Oasis.git
@@ -73,13 +78,16 @@ cd The-Wild-Oasis
 # Install dependencies
 pnpm install
 ```
+
 ### Environment Variables
-Inside the supabase.ts create these two variables 
+
+Inside the supabase.ts create these two variables
 `UPABASE_URL=your-supabase-url`
 `SUPABASE_KEY=your-supabase-anon-key`
 `SUPABASE_CLIENT=your-supabase-anon-key`
 
 ## 🚀 Usage
+
 ```bash
 # Start development server
 pnpm dev
@@ -88,35 +96,39 @@ pnpm dev
 pnpm build
 
 # Preview production build
-pnpm preview 
+pnpm preview
 ```
 
 ## 🤝 Contributing
+
 Contributions are welcome! 🎉
 
 Fork the repository
 
 Create a feature branch:
+
 ```bash
 git checkout -b feature-branch
 ```
 
 Commit changes:
+
 ```bash
 git commit -m "Add amazing feature"
 ```
 
 Push to branch:
+
 ```bash
 git push origin feature-branch
 ```
 
 ## 📄 License
+
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License — see the LICENSE file.
 
----
-
 ## 🙌 Acknowledgements
+
 - **Supabase** — Backend & authentication</li>
 - **React + TailwindCSS** — Modern UI framework</li>
 - **Vercel** — Hosting platform</li>
