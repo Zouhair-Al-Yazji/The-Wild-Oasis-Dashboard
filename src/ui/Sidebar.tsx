@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
+import Uploader from "@/data/Uploader";
 
 export default function Sidebar() {
   return (
@@ -9,6 +10,7 @@ export default function Sidebar() {
         <Logo />
       </NavLink>
       <MainNav />
+      <Uploader />
     </aside>
   );
 }

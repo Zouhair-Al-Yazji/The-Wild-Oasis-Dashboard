@@ -28,7 +28,11 @@ export default function TodayItem({ activity }: { activity: Booking }) {
         </Button>
       )}
       {status === "checked-in" && (
-        <Button onClick={() => checkout(Number(id))} disabled={isPending}>
+        <Button
+          size={"sm"}
+          onClick={() => checkout(Number(id))}
+          disabled={isPending}
+        >
           {isPending ? <SpinnerMini label="Checking out" /> : "Check out"}
         </Button>
       )}

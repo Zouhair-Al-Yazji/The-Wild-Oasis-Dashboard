@@ -1,4 +1,4 @@
-import { formatDistance, parseISO } from "date-fns";
+import { differenceInDays, formatDistance, parseISO } from "date-fns";
 
 export const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("en-US", {
@@ -44,3 +44,7 @@ export function calculatePercentageChange(
   if (previous === 0) return current === 0 ? "0" : "100";
   return (((current - previous) / previous) * 100).toFixed(1);
 }
+
+// We want to make this function work for both Date objects and strings (which come from Supabase)
+export const subtractDates = (dateStr1: String, dateStr2: String) =>
+  differenceInDays(parseISO(String(dateStr1)), parseISO(String(dateStr2)));
