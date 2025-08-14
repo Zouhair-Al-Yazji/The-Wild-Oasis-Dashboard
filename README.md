@@ -82,7 +82,7 @@ pnpm install
 ### Environment Variables
 
 Inside the supabase.ts create these two variables
-`UPABASE_URL=your-supabase-url`
+`SUPABASE_URL=your-supabase-url`
 `SUPABASE_KEY=your-supabase-anon-key`
 `SUPABASE_CLIENT=your-supabase-anon-key`
 
