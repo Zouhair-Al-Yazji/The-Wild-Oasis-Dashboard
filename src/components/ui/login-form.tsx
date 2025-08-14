@@ -10,6 +10,7 @@ import SpinnerMini from "@/ui/SpinnerMini";
 import { HiEye, HiEyeSlash } from "react-icons/hi2";
 import { useDarkMode } from "@/context/DarkModeContext";
 import { Link } from "react-router-dom";
+import { TextEffect } from "./text-effect";
 
 type LoginFormData = {
   email: string;
@@ -122,9 +123,13 @@ export function LoginForm({
           </form>
           <div className="bg-sidebar relative hidden md:flex md:flex-col md:items-center md:justify-center md:gap-3">
             <img src={src} alt="Image" className="w-60" />
-            <p className="text-muted-foreground text-sm">
+            <TextEffect
+              className="text-muted-foreground text-sm"
+              per="char"
+              preset="fade"
+            >
               Your gateway to exceptional hospitality management
-            </p>
+            </TextEffect>
           </div>
         </CardContent>
       </Card>

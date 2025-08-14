@@ -8,6 +8,7 @@ import SpinnerMini from "@/ui/SpinnerMini";
 import { useDarkMode } from "@/context/DarkModeContext";
 import { Link } from "react-router-dom";
 import { useForgotPassword } from "./useForgotPassword";
+import { TextEffect } from "@/components/ui/text-effect";
 
 type ForgotPasswordFormData = {
   email: string;
@@ -91,9 +92,13 @@ export default function ForgotPasswordForm({
           </form>
           <div className="bg-sidebar relative hidden md:flex md:flex-col md:items-center md:justify-center md:gap-3">
             <img src={src} alt="Image" className="w-60" />
-            <p className="text-muted-foreground text-sm">
+            <TextEffect
+              className="text-muted-foreground text-sm"
+              per="char"
+              preset="fade"
+            >
               Your gateway to exceptional hospitality management
-            </p>
+            </TextEffect>
           </div>
         </CardContent>
       </Card>
