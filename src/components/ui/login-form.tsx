@@ -81,7 +81,7 @@ export function LoginForm({
                   </Label>
                   <Link
                     to="/forgot-password"
-                    className="text-muted-foreground hover:text-foreground ml-auto text-sm underline-offset-2 hover:underline"
+                    className={`text-muted-foreground hover:text-foreground ml-auto text-sm underline-offset-2 hover:underline ${isPending && "pointer-events-none opacity-50"}`}
                   >
                     Forgot your password?
                   </Link>
