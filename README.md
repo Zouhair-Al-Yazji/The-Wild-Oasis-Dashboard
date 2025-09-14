@@ -36,7 +36,7 @@
 It streamlines hotel operations, from managing cabins and guests to handling bookings and check-ins.  
 The system ensures that hotel staff can efficiently perform daily tasks with a clean, modern interface.
 
-🔗 **Live Demo:** [the-wild-oasis-ts-phi.vercel.app](https://the-wild-oasis-dashboard-zouhair.vercel.app)
+🔗 **Live Demo:** [the-wild-oasis-dashboard-zouhair.app](https://the-wild-oasis-dashboard-zouhair.vercel.app)
 
 ## ✨ Features
 
