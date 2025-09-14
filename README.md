@@ -70,7 +70,7 @@ The system ensures that hotel staff can efficiently perform daily tasks with a c
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_GITHUB_USERNAME/The-Wild-Oasis.git
+git clone https://github.com/Zouhair-Al-Yazji/The-Wild-Oasis-Dashbord.git
 
 # Navigate into the project folder
 cd The-Wild-Oasis
